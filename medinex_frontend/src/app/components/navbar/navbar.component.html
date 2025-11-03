@@ -1,0 +1,54 @@
+<mat-toolbar color="primary" class="modern-navbar">
+  <!-- Logo y nombre de la aplicación -->
+  <div class="navbar-brand">
+    <span class="brand-text">MEDINEX</span>
+    <span class="brand-subtitle">Sistema Médico</span>
+  </div>
+  
+  <span class="navbar-spacer"></span>
+  
+  <!-- Navegación para usuarios no autenticados -->
+  <div class="navbar-actions" *ngIf="!isLoggedIn">
+    <button
+      [routerLink]="'/login'"
+      mat-flat-button
+      class="login-btn"
+      aria-label="Iniciar sesión"
+    >
+      <mat-icon>login</mat-icon>
+      Iniciar sesión
+    </button>
+    <button
+      [routerLink]="'/signup'"
+      mat-stroked-button
+      class="signup-btn"
+      aria-label="Registrarse"
+    >
+      <mat-icon>person_add</mat-icon>
+      Registrar
+    </button>
+  </div>
+  
+  <!-- Navegación para usuarios autenticados -->
+  <div class="navbar-user" *ngIf="isLoggedIn && user">
+    <button
+      mat-button
+      class="user-profile-btn"
+      disabled
+      aria-label="Información de usuario"
+    >
+      <mat-icon>account_circle</mat-icon>
+      <span class="username">{{ user.username }}</span>
+    </button>
+    
+    <button
+      (click)="logout()"
+      mat-icon-button
+      class="logout-btn"
+      aria-label="Cerrar sesión"
+      matTooltip="Cerrar sesión"
+    >
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,15 @@
+.bootstrap-wrapper {
+  margin-top: 20px;
+}
+
+.container-fluid {
+  padding: 0 15px;
+}
+
+.row {
+  margin: 0;
+}
+
+[class*="col-"] {
+  padding: 0 15px;
+}

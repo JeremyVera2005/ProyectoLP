@@ -1,0 +1,174 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="assets/logo.png" alt="Logo" width="130" height="100" class="d-inline-block align-text-top">
+        </a>
+        <div class="d-flex flex-column align-items-end">
+            <ul class="nav mb-2">
+                <li class="nav-item">
+                    <a class="nav-link active text-dark" aria-current="page" href="#">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">Consultas Médicas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-info text-white ms-2" routerLink="/login" role="button">INICIAR SESIÓN</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="assets/banner.png" width="250" class="d-block w-100" alt="banner">
+        </div>
+        <div class="carousel-item">
+            <img src="assets/a.jpg" width="250" class="d-block w-100" alt="img1">
+        </div>
+        <div class="carousel-item">
+            <img src="assets/fffff.jpg" width="250" class="d-block w-100" alt="img2">
+        </div>
+    </div>
+</div>
+
+<section id="sobre-nosotros" class="text-center">
+    <div class="bg-info text-white py-4">
+        <h6 class="mb-1">Sobre Nosotros</h6>
+        <h2><strong><span class="text-light">MEDINEX</span></strong></h2>
+        <p class="mb-0">En la Clínica Medinex contamos con más de 20 años de experiencia ofreciendo un servicio integral y de calidad, con el más destacado staff médico del país, moderna infraestructura y tecnología al servicio de nuestros pacientes con la confianza y seguridad de siempre.</p>
+    </div>
+    <div class="my-4">
+        <button (click)="scrollToSection('consultas-medicas')" class="btn btn-success mx-2 px-4 rounded-pill">Consultas Médicas</button>
+        <button (click)="scrollToSection('laboratorio')" class="btn btn-light mx-2 px-4 rounded-pill">Laboratorio</button>
+    </div>
+
+    <h3 id="consultas-medicas" class="fw-bold text-secondary mb-4">Consultas Médicas</h3>
+    <div class="container">
+        <div class="row text-center g-4">
+            <mat-card class="card p-5">
+                <div>
+                    <img src="assets/1.png" class="img-fluid mb-5" alt="Medicina General">
+                    <mat-card-content class="text-center mt-3">
+                        <p class="mt-2 mb-0 fw-bold">Medicina General</p>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+            <mat-card class="card p-5">
+                <div>
+                    <img src="assets/2.png" class="img-fluid rounded mb-5" alt="Control de Enfermedades">
+                    <mat-card-content class="text-center mt-3">
+                        <p class="mt-2 mb-0 fw-bold">Control de Enfermedades</p>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+            <mat-card class="card p-5">
+                <div>
+                    <img src="assets/3.png" class="img-fluid rounded mb-5" alt="Cardiología">
+                    <mat-card-content class="text-center mt-3">
+                        <p class="mt-2 mb-0 fw-bold">Cardiología</p>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+            <mat-card class="card p-5">
+                <div>
+                    <img src="assets/4.png" class="img-fluid rounded mb-5" alt="Ginecología">
+                    <mat-card-content class="text-center mt-3">
+                        <p class="mt-2 mb-0 fw-bold">Ginecología</p>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+            <mat-card class="card p-5">
+                <div>
+                    <img src="assets/5.png" class="img-fluid rounded mb-5" alt="Teleconsulta Médica">
+                    <mat-card-content class="text-center mt-3">
+                        <p class="mt-2 mb-0 fw-bold">Teleconsulta Médica</p>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+            <mat-card class="card p-5">
+                <div>
+                    <img src="assets/6.png" class="img-fluid rounded mb-5" alt="Pediatría">
+                    <mat-card-content class="text-center mt-3">
+                        <p class="mt-2 mb-0 fw-bold">Pediatría</p>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+
+    <!-- Sección Laboratorio -->
+    <h3 id="laboratorio" class="fw-bold text-secondary my-5">Laboratorio</h3>
+    <div class="container">
+        <div class="row text-center g-4">
+            <mat-card class="card p-5">
+                <div>
+                    <img src="assets/7.png" class="img-fluid rounded mb-5" alt="Creatinina">
+                    <mat-card-content class="text-center mt-3">
+                        <p class="mt-2 mb-0 fw-bold">Creatinina</p>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+            <mat-card class="card p-5">
+                <div>
+                    <img src="assets/8.png" class="img-fluid rounded mb-5" alt="Examen de orina">
+                    <mat-card-content class="text-center mt-3">
+                        <p class="mt-2 mb-0 fw-bold">Examen de orina</p>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+            <mat-card class="card p-5">
+                <div>
+                    <img src="assets/9.png" class="img-fluid rounded mb-5" alt="Glucosa">
+                    <mat-card-content class="text-center mt-3">
+                        <p class="mt-2 mb-0 fw-bold">Glucosa</p>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</section>
+
+<!-- Horario de atención -->
+<section class="d-flex justify-content-between align-items-center px-5 py-4 my-5"
+    style="background-color: #4e6cff; color: white;">
+    <div>
+        <h4 class="fw-bold">HORARIO DE ATENCIÓN</h4>
+        <p class="mb-0">De lunes a viernes de 6:00 am a 7:00 pm</p>
+        <p>y sábados de 6:00 am a 4:00 pm</p>
+    </div>
+    <div>
+        <img src="assets/logo.png" width="300" alt="Logo">
+    </div>
+</section>
+
+<!-- Footer inferior -->
+<footer class="px-5 py-4 bg-light text-dark">
+    <div class="row">
+        <!-- Marca y redes -->
+        <div class="col-md-6 mb-3">
+            <strong>MEDINEX</strong> <span class="text-muted">&nbsp;SALUD PARA TODOS</span>
+            <div class="mt-2">
+                <a href="#" class="text-dark me-3">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#" class="text-dark me-3">
+                    <i class="bi bi-instagram"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Enlaces rápidos -->
+        <div class="col-md-6 text-md-end">
+            <ul class="list-unstyled">
+                <li><a (click)="scrollToSection('sobre-nosotros')" class="text-dark fw-bold text-decoration-none" style="cursor: pointer;">Inicio</a></li>
+                <li><a (click)="scrollToSection('consultas-medicas')" class="text-dark fw-bold text-decoration-none" style="cursor: pointer;">Especialidades</a></li>
+                <li><a href="#" class="text-dark fw-bold text-decoration-none">Libro de reclamaciones</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>

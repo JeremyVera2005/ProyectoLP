@@ -1,0 +1,172 @@
+<div class="emergencias-wrapper">
+  <div class="emergencias-container">
+    <!-- Header -->
+    <div class="emergencias-header">
+      <div class="header-content">
+        <div class="header-icon">
+          <mat-icon>emergency</mat-icon>
+        </div>
+        <div class="header-text">
+          <h1 class="emergencias-title">Emergencias 24/7</h1>
+          <p class="emergencias-subtitle">Doctores disponibles las 24 horas para atención de emergencias</p>
+        </div>
+        <div class="status-indicator">
+          <div class="status-light"></div>
+          <span class="status-text">Servicio Activo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Estadísticas rápidas -->
+    <div class="stats-section">
+      <mat-card class="stat-card">
+        <div class="stat-content">
+          <mat-icon class="stat-icon">people</mat-icon>
+          <div class="stat-info">
+            <span class="stat-number">{{doctoresEmergencia.length}}</span>
+            <span class="stat-label">Doctores Activos</span>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <div class="stat-content">
+          <mat-icon class="stat-icon">schedule</mat-icon>
+          <div class="stat-info">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Disponibilidad</span>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <div class="stat-content">
+          <mat-icon class="stat-icon">local_hospital</mat-icon>
+          <div class="stat-info">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Cobertura</span>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+    <!-- Lista de doctores de emergencia -->
+    <mat-card class="doctors-card">
+      <mat-card-header class="card-header">
+        <mat-card-title class="card-title">
+          <mat-icon>medical_services</mat-icon>
+          Doctores de Emergencia
+        </mat-card-title>
+        <mat-card-subtitle class="card-subtitle">
+          Personal médico especializado en atención de urgencias
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content class="doctors-content">
+        <div *ngIf="doctoresEmergencia.length === 0" class="empty-state">
+          <mat-icon class="empty-icon">person_off</mat-icon>
+          <h3 class="empty-title">No hay doctores de emergencia disponibles</h3>
+          <p class="empty-subtitle">Configure doctores para el servicio de emergencias 24/7</p>
+        </div>
+
+        <div *ngIf="doctoresEmergencia.length > 0" class="doctors-grid">
+          <div *ngFor="let doctor of doctoresEmergencia" class="doctor-card">
+            <div class="doctor-avatar">
+              <mat-icon>person</mat-icon>
+            </div>
+            
+            <div class="doctor-info">
+              <h3 class="doctor-name">{{doctor.titulo}}</h3>
+              <p class="doctor-specialty">{{doctor.servicio?.titulo || 'Emergencias 24/7'}}</p>
+              <p class="doctor-description">{{doctor.descripcion}}</p>
+              <p class="doctor-dni">DNI: {{doctor.puntosMaximos}}</p>
+              
+              <div class="doctor-status">
+                <div class="status-badge available">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>Disponible - {{getDoctorStatus(doctor)}}</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="doctor-actions">
+              <button mat-mini-fab 
+                      color="primary"
+                      class="action-btn edit-btn" 
+                      matTooltip="Editar información del doctor"
+                      (click)="editarDoctor(doctor.doctorId || doctor.id)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              
+              <button mat-mini-fab 
+                      color="warn"
+                      class="action-btn delete-btn" 
+                      matTooltip="Remover del servicio de emergencias"
+                      (click)="eliminarDoctor(doctor.doctorId || doctor.id)">
+                <mat-icon>person_remove</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <!-- Acciones del card -->
+      <mat-card-actions class="doctors-actions">
+        <button 
+          routerLink="/admin/add-doctor" 
+          mat-raised-button 
+          color="primary" 
+          class="add-doctor-btn">
+          <mat-icon>person_add</mat-icon>
+          Agregar Doctor de Emergencia
+        </button>
+        
+        <button 
+          routerLink="/admin/doctores" 
+          mat-stroked-button 
+          color="accent" 
+          class="view-all-btn">
+          <mat-icon>visibility</mat-icon>
+          Ver Doctores Regulares
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Información adicional -->
+    <mat-card class="info-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>info</mat-icon>
+          Información del Servicio
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="info-grid">
+          <div class="info-item">
+            <mat-icon>schedule</mat-icon>
+            <div>
+              <h4>Horario de Atención</h4>
+              <p>24 horas al día, 7 días a la semana</p>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <mat-icon>phone</mat-icon>
+            <div>
+              <h4>Línea de Emergencias</h4>
+              <p>+51 999 123 456 (Disponible 24/7)</p>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <mat-icon>location_on</mat-icon>
+            <div>
+              <h4>Ubicación</h4>
+              <p>Área de Emergencias - Planta Baja</p>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

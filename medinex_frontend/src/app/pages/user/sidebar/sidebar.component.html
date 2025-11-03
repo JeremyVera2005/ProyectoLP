@@ -1,0 +1,76 @@
+<div class="sidebar-container">
+  <!-- Header Section -->
+  <div class="sidebar-header">
+    <div class="header-icon">
+      <mat-icon>medical_services</mat-icon>
+    </div>
+    <div class="header-text">
+      <h3>Servicios Médicos</h3>
+      <p>Selecciona un servicio</p>
+    </div>
+  </div>
+
+  <!-- Navigation List -->
+  <div class="nav-list">
+    <!-- Doctores Section -->
+    <div class="nav-section">
+      <div class="section-header">
+        <mat-icon class="section-icon">medical_services</mat-icon>
+        <span class="section-title">Servicios Principales</span>
+      </div>
+      
+      <button 
+        class="nav-item doctores-item"
+        routerLink="/user-dashboard/0"
+        routerLinkActive="active">
+        <div class="nav-item-icon">
+          <mat-icon>groups</mat-icon>
+        </div>
+        <div class="nav-item-content">
+          <span class="nav-item-title">Doctores</span>
+          <span class="nav-item-subtitle">Ver todos los doctores</span>
+        </div>
+        <mat-icon class="nav-arrow">chevron_right</mat-icon>
+      </button>
+    </div>
+
+    <!-- Services Section -->
+    <div class="nav-section" *ngIf="!isLoading && servicios && servicios.length > 0">
+      <div class="section-header">
+        <mat-icon class="section-icon">folder_special</mat-icon>
+        <span class="section-title">Especialidades</span>
+      </div>
+      
+      <button 
+        *ngFor="let c of servicios; trackBy: trackByService"
+        class="nav-item service-item"
+        [routerLink]="'/user-dashboard/' + c.servicioId"
+        routerLinkActive="active">
+        <div class="nav-item-icon">
+          <mat-icon>local_hospital</mat-icon>
+        </div>
+        <div class="nav-item-content">
+          <span class="nav-item-title">{{ c.titulo }}</span>
+          <span class="nav-item-subtitle">Servicio especializado</span>
+        </div>
+        <mat-icon class="nav-arrow">chevron_right</mat-icon>
+      </button>
+    </div>
+
+    <!-- Loading State -->
+    <div class="nav-section" *ngIf="isLoading">
+      <div class="section-header">
+        <mat-icon class="section-icon">folder_special</mat-icon>
+        <span class="section-title">Cargando...</span>
+      </div>
+      <div class="loading-item nav-item" style="height: 60px; margin-bottom: 8px;"></div>
+      <div class="loading-item nav-item" style="height: 60px; margin-bottom: 8px;"></div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="!isLoading && (!servicios || servicios.length === 0)">
+      <mat-icon class="empty-icon">inbox</mat-icon>
+      <p class="empty-text">No hay servicios disponibles</p>
+    </div>
+  </div>
+</div>

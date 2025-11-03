@@ -1,0 +1,331 @@
+/* Contenedor principal */
+.add-service-wrapper {
+  height: calc(100vh - 64px); /* Altura fija menos header */
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 1rem; /* Reducido padding */
+  overflow: hidden; /* Eliminar scroll */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.add-service-container {
+  max-width: 900px;
+  width: 100%;
+  height: fit-content;
+  max-height: calc(100vh - 128px); /* Asegurar que no exceda la altura */
+}
+
+/* Header del formulario */
+.form-header {
+  margin-bottom: 1.2rem; /* Reducido margen */
+  text-align: center;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem; /* Reducido gap */
+  flex-wrap: wrap;
+}
+
+.header-icon {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border-radius: 50%;
+  padding: 1rem; /* Reducido padding */
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.header-icon:hover {
+  transform: scale(1.05);
+}
+
+.header-icon mat-icon {
+  color: white;
+  font-size: 2rem; /* Reducido tamaño */
+  width: 2rem;
+  height: 2rem;
+}
+
+.header-text {
+  text-align: left;
+}
+
+.form-title {
+  font-size: 2rem; /* Reducido de 2.5rem */
+  font-weight: 700;
+  margin: 0 0 0.3rem 0; /* Reducido margen */
+  color: #333;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.form-subtitle {
+  font-size: 0.95rem; /* Reducido de 1.1rem */
+  color: #666;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Tarjeta del formulario */
+.form-card {
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border: none;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* Formulario */
+.service-form {
+  padding: 0.8rem; /* Reducido padding */
+}
+
+.form-section {
+  margin-bottom: 1.8rem; /* Reducido margen */
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem; /* Reducido gap */
+  margin-bottom: 1rem; /* Reducido margen */
+  padding-bottom: 0.5rem; /* Reducido padding */
+  border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+}
+
+.section-icon {
+  color: #667eea;
+  font-size: 1.3rem; /* Reducido tamaño */
+}
+
+.section-title {
+  font-size: 1.1rem; /* Reducido de 1.3rem */
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+/* Campos del formulario */
+.form-field {
+  width: 100%;
+  margin-bottom: 1rem; /* Reducido margen */
+}
+
+.textarea-field {
+  margin-bottom: 0;
+}
+
+.textarea-field textarea {
+  min-height: 120px; /* Reducir altura del textarea */
+  max-height: 140px; /* Limitar altura máxima */
+}
+
+/* Personalización de Material Design */
+::ng-deep .mat-mdc-form-field {
+  .mat-mdc-text-field-wrapper {
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+  }
+  
+  .mdc-text-field--outlined .mdc-notched-outline__leading,
+  .mdc-text-field--outlined .mdc-notched-outline__notch,
+  .mdc-text-field--outlined .mdc-notched-outline__trailing {
+    border-color: rgba(102, 126, 234, 0.3);
+    border-width: 2px;
+  }
+  
+  &.mat-focused {
+    .mdc-text-field--outlined .mdc-notched-outline__leading,
+    .mdc-text-field--outlined .mdc-notched-outline__notch,
+    .mdc-text-field--outlined .mdc-notched-outline__trailing {
+      border-color: #667eea;
+      border-width: 2px;
+    }
+  }
+  
+  &:hover:not(.mat-focused) {
+    .mdc-text-field--outlined .mdc-notched-outline__leading,
+    .mdc-text-field--outlined .mdc-notched-outline__notch,
+    .mdc-text-field--outlined .mdc-notched-outline__trailing {
+      border-color: rgba(102, 126, 234, 0.5);
+    }
+  }
+}
+
+::ng-deep .mat-mdc-form-field-hint {
+  color: #667eea;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+::ng-deep .mat-mdc-form-field-icon-suffix mat-icon {
+  color: #667eea;
+  opacity: 0.7;
+}
+
+/* Botones de acción */
+.form-actions {
+  display: flex;
+  gap: 1rem; /* Reducido gap */
+  justify-content: center;
+  padding-top: 1.2rem; /* Reducido padding */
+  border-top: 1px solid rgba(102, 126, 234, 0.1);
+  flex-wrap: wrap;
+}
+
+.save-button,
+.cancel-button {
+  min-width: 160px;
+  height: 48px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.save-button {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border: none;
+  color: white;
+}
+
+.save-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cancel-button {
+  border: 2px solid #667eea;
+  color: #667eea;
+}
+
+.cancel-button:hover {
+  background-color: rgba(102, 126, 234, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .add-service-wrapper {
+    padding: 0.8rem; /* Reducido padding */
+  }
+  
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .header-text {
+    text-align: center;
+  }
+  
+  .form-title {
+    font-size: 1.7rem; /* Reducido tamaño */
+  }
+  
+  .form-subtitle {
+    font-size: 0.9rem; /* Reducido tamaño */
+  }
+  
+  .header-icon {
+    padding: 0.8rem; /* Reducido padding */
+  }
+  
+  .header-icon mat-icon {
+    font-size: 1.8rem; /* Reducido tamaño */
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem; /* Reducido gap */
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem; /* Reducido gap */
+  }
+  
+  .save-button,
+  .cancel-button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-form {
+    padding: 0.4rem; /* Reducido padding */
+  }
+  
+  .form-title {
+    font-size: 1.5rem; /* Reducido tamaño */
+  }
+  
+  .section-title {
+    font-size: 1rem; /* Reducido tamaño */
+  }
+  
+  .form-section {
+    margin-bottom: 1.2rem; /* Reducido margen */
+  }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.form-section {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.form-section:nth-child(1) { animation-delay: 0.1s; }
+.form-section:nth-child(2) { animation-delay: 0.2s; }
+.form-actions { animation-delay: 0.3s; }
+
+/* Estados de validación */
+::ng-deep .mat-mdc-form-field.mat-form-field-invalid {
+  .mdc-text-field--outlined .mdc-notched-outline__leading,
+  .mdc-text-field--outlined .mdc-notched-outline__notch,
+  .mdc-text-field--outlined .mdc-notched-outline__trailing {
+    border-color: #f44336;
+  }
+}
+
+/* Efectos hover para la tarjeta */
+.form-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}

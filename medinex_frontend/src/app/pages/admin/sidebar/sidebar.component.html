@@ -1,0 +1,79 @@
+<div class="sidebar-container">
+  <mat-card class="sidebar-card">
+    <!-- Header del sidebar -->
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <mat-icon class="logo-icon">medical_services</mat-icon>
+        <span class="logo-text">MEDINEX</span>
+      </div>
+      <div class="sidebar-title">Panel Admin</div>
+    </div>
+
+    <!-- Navegación principal -->
+    <mat-nav-list class="sidebar-nav">
+      <h3 mat-subheader class="nav-subheader">
+        <mat-icon>menu</mat-icon>
+        Navegación Principal
+      </h3>
+      
+      <a mat-list-item routerLink="/admin" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+        <mat-icon matListItemIcon class="nav-icon home-icon">home</mat-icon>
+        <span matListItemTitle>Inicio</span>
+      </a>
+      
+      <a mat-list-item routerLink="/admin/profile" routerLinkActive="active-link" class="nav-item">
+        <mat-icon matListItemIcon class="nav-icon profile-icon">account_circle</mat-icon>
+        <span matListItemTitle>Mi Perfil</span>
+      </a>
+
+      <!-- Sección de Servicios -->
+      <h3 mat-subheader class="nav-subheader">
+        <mat-icon>medical_services</mat-icon>
+        Gestión de Servicios
+      </h3>
+      
+      <a mat-list-item routerLink="/admin/servicios" routerLinkActive="active-link" class="nav-item">
+        <mat-icon matListItemIcon class="nav-icon services-icon">list_alt</mat-icon>
+        <span matListItemTitle>Ver Servicios</span>
+      </a>
+      
+      <a mat-list-item routerLink="/admin/add-servicio" routerLinkActive="active-link" class="nav-item">
+        <mat-icon matListItemIcon class="nav-icon add-service-icon">add_circle</mat-icon>
+        <span matListItemTitle>Nuevo Servicio</span>
+      </a>
+
+      <!-- Sección de Doctores -->
+      <h3 mat-subheader class="nav-subheader">
+        <mat-icon>person</mat-icon>
+        Gestión de Doctores
+      </h3>
+      
+      <a mat-list-item routerLink="/admin/doctores" routerLinkActive="active-link" class="nav-item">
+        <mat-icon matListItemIcon class="nav-icon doctors-icon">people</mat-icon>
+        <span matListItemTitle>Ver Doctores</span>
+      </a>
+      
+      <a mat-list-item routerLink="/admin/add-doctor" routerLinkActive="active-link" class="nav-item">
+        <mat-icon matListItemIcon class="nav-icon add-doctor-icon">person_add</mat-icon>
+        <span matListItemTitle>Nuevo Doctor</span>
+      </a>
+
+      <!-- Sección de Respuestas -->
+      <h3 mat-subheader class="nav-subheader">
+        <mat-icon>assignment</mat-icon>
+        Gestión de Respuestas
+      </h3>
+      
+      <a mat-list-item routerLink="/admin/respuestas" routerLinkActive="active-link" class="nav-item">
+        <mat-icon matListItemIcon class="nav-icon responses-icon">assignment_turned_in</mat-icon>
+        <span matListItemTitle>Citas Medicas</span>
+      </a>
+      
+      <a mat-list-item routerLink="/admin/emergencias" routerLinkActive="active-link" class="nav-item emergency-item">
+        <mat-icon matListItemIcon class="nav-icon emergency-icon">emergency</mat-icon>
+        <span matListItemTitle>Emergencias 24/7</span>
+      </a>
+    </mat-nav-list>
+
+  </mat-card>
+</div>

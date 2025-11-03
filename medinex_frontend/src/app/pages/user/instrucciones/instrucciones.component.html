@@ -1,0 +1,127 @@
+<div class="container">
+  <!-- Header Section -->
+  <div class="header">
+    <div class="header-content">
+      <div class="icon-container">
+        <mat-icon class="header-icon">assignment</mat-icon>
+      </div>
+      <div class="header-text">
+        <h1 class="header-title">Cuestionario Previo</h1>
+        <p class="header-subtitle">Preparación para tu consulta médica</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Doctor Info Card -->
+  <div class="doctor-info-card">
+    <div class="doctor-header">
+      <div class="doctor-avatar">
+        <mat-icon>person</mat-icon>
+      </div>
+      <div class="doctor-details">
+        <h2 class="doctor-name">{{ doctor.titulo }}</h2>
+        <p class="doctor-description">{{ doctor.descripcion }}</p>
+        <div class="doctor-meta">
+          <span class="meta-item">
+            <mat-icon>badge</mat-icon>
+            DNI: {{ doctor.puntosMaximos }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instructions Section -->
+  <div class="instructions-wrapper">
+    <div class="instructions-card">
+      <div class="section-header">
+        <mat-icon class="section-icon">info</mat-icon>
+        <h3 class="section-title">Instrucciones Importantes</h3>
+      </div>
+      
+      <div class="instructions-list">
+        <div class="instruction-item">
+          <div class="instruction-icon">
+            <mat-icon>medical_services</mat-icon>
+          </div>
+          <div class="instruction-content">
+            <p>Este cuestionario es solo para fines pre consulta</p>
+          </div>
+        </div>
+        
+        <div class="instruction-item">
+          <div class="instruction-icon">
+            <mat-icon>schedule</mat-icon>
+          </div>
+          <div class="instruction-content">
+            <p>Tienes que enviar el cuestionario en <span class="highlight">{{ doctor.numeroDePreguntas * 2 }} minutos</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Test Instructions -->
+    <div class="test-instructions-card">
+      <div class="section-header">
+        <mat-icon class="section-icon">play_circle_outline</mat-icon>
+        <h3 class="section-title">Intentos de la Prueba</h3>
+      </div>
+      
+      <div class="test-steps">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <p>Presione el botón <span class="highlight">Empezar</span> para iniciar el cuestionario</p>
+          </div>
+        </div>
+        
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <p>El tiempo comenzará en el momento en que haga click en el botón de inicio</p>
+          </div>
+        </div>
+        
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <p>No puede reanudar este cuestionario si se interrumpe por algún motivo</p>
+          </div>
+        </div>
+        
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <p>Haga clic en el botón enviar cuestionario al finalizar el cuestionario</p>
+          </div>
+        </div>
+        
+        <div class="step-item">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <p>El informe de la reserva se genera automáticamente en forma de copia PDF</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Section -->
+  <div class="action-section">
+    <div class="action-card">
+      <div class="action-content">
+        <h4 class="action-title">¿Estás listo para comenzar?</h4>
+        <p class="action-description">Una vez que inicies, el tiempo comenzará a correr automáticamente</p>
+        
+        <button 
+          (click)="empezarDoctor()" 
+          mat-raised-button 
+          color="primary" 
+          class="start-button">
+          <mat-icon>play_arrow</mat-icon>
+          Empezar Cuestionario
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

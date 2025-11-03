@@ -1,0 +1,192 @@
+.container-fluid {
+  padding: 20px;
+}
+
+.header-image {
+  background-color: #3f51b5;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-card {
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.bg-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-success {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.bg-info {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.bg-warning {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.filter-card {
+  background-color: #f8f9fa;
+  margin-bottom: 20px;
+}
+
+.table-container {
+  overflow-x: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.mat-table {
+  width: 100%;
+  background: white;
+}
+
+.mat-header-cell {
+  font-weight: 600;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.mat-cell {
+  padding: 12px 8px;
+}
+
+.user-info, .doctor-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-icon {
+  color: #3f51b5;
+  font-size: 18px;
+}
+
+.doctor-icon {
+  color: #4caf50;
+  font-size: 18px;
+}
+
+.date-info {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.mat-chip-set {
+  margin: 0;
+}
+
+.mat-chip {
+  font-size: 0.8rem;
+  min-height: 24px;
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.no-data mat-icon {
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+  color: #ccc;
+  margin-bottom: 16px;
+}
+
+.no-data p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.me-2 {
+  margin-right: 8px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-end {
+  align-items: flex-end;
+}
+
+.mb-4 {
+  margin-bottom: 24px;
+}
+
+.mat-progress-bar {
+  margin-bottom: 16px;
+}
+
+.mat-raised-button {
+  margin-right: 8px;
+}
+
+.mat-icon-button {
+  margin-right: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 10px;
+  }
+  
+  .stat-card {
+    margin-bottom: 15px;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .table-container {
+    font-size: 0.9rem;
+  }
+  
+  .mat-cell {
+    padding: 8px 4px;
+  }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .filter-card {
+    background-color: #424242;
+  }
+  
+  .mat-header-cell {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .date-info {
+    color: #ccc;
+  }
+}

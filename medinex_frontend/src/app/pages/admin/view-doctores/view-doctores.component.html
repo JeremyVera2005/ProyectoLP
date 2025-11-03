@@ -1,0 +1,126 @@
+<div class="container">
+  <!-- Header Section -->
+  <div class="header">
+    <div class="header-content">
+      <div class="icon-container">
+        <mat-icon class="header-icon">group</mat-icon>
+      </div>
+      <div class="header-text">
+        <h1 class="header-title">Gestión de Doctores</h1>
+        <p class="header-subtitle">Administra la información y configuración de los doctores del sistema</p>
+        <div class="header-stats" *ngIf="doctores.length > 0">
+          <span class="stat-item">
+            <mat-icon>people</mat-icon>
+            {{ doctoresRegulares.length }} Doctores Regulares
+          </span>
+          <span class="stat-divider">•</span>
+          <span class="stat-item">
+            <mat-icon>emergency</mat-icon>
+            {{ doctores.length - doctoresRegulares.length }} Doctores 24/7
+          </span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button 
+          routerLink="/admin/add-doctor" 
+          mat-fab 
+          class="add-button"
+          matTooltip="Agregar nuevo doctor">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Doctors List -->
+  <div class="doctors-grid" *ngIf="doctoresRegulares.length > 0">
+    <div class="doctor-card" *ngFor="let doctor of doctoresRegulares; trackBy: trackByDoctorId">
+      <div class="card-header">
+        <div class="doctor-avatar">
+          <mat-icon class="avatar-icon">person</mat-icon>
+        </div>
+        <div class="doctor-info">
+          <h3 class="doctor-name">{{ doctor.titulo }}</h3>
+          <p class="doctor-specialty">
+            <mat-icon class="specialty-icon">medical_services</mat-icon>
+            {{ doctor.servicio.titulo }}
+          </p>
+        </div>
+        <div class="status-badge" [class.active]="doctor.activo">
+          <mat-icon>{{ doctor.activo ? 'check_circle' : 'cancel' }}</mat-icon>
+          <span>{{ doctor.activo ? 'Activo' : 'Inactivo' }}</span>
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div class="doctor-stats">
+          <div class="stat-item">
+            <mat-icon class="stat-icon">fingerprint</mat-icon>
+            <div class="stat-info">
+              <span class="stat-label">DNI</span>
+              <span class="stat-value">{{ doctor.puntosMaximos }}</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <mat-icon class="stat-icon">quiz</mat-icon>
+            <div class="stat-info">
+              <span class="stat-label">Consultas Diarias</span>
+              <span class="stat-value">{{ doctor.numeroDePreguntas }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-description" *ngIf="doctor.descripcion">
+          <p>{{ doctor.descripcion | slice:0:120 }}{{ doctor.descripcion?.length > 120 ? '...' : '' }}</p>
+        </div>
+      </div>
+
+      <div class="card-actions">
+        <div class="primary-actions">
+          <button 
+            mat-stroked-button 
+            class="action-btn"
+            [routerLink]="'/admin/ver-preguntas/' + doctor.doctorId + '/' + doctor.titulo"
+            matTooltip="Ver preguntas del doctor">
+            <mat-icon>quiz</mat-icon>
+            <span>Preguntas</span>
+          </button>
+          <button 
+            mat-stroked-button 
+            class="action-btn"
+            [routerLink]="'/admin/doctor/' + doctor.doctorId"
+            matTooltip="Editar información del doctor">
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+          </button>
+        </div>
+        <div class="danger-actions">
+          <button 
+            mat-stroked-button 
+            class="delete-btn"
+            (click)="eliminarDoctor(doctor.doctorId)"
+            matTooltip="Eliminar doctor">
+            <mat-icon>delete</mat-icon>
+            <span>Eliminar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="doctoresRegulares.length === 0">
+    <div class="empty-content">
+      <mat-icon class="empty-icon">person_off</mat-icon>
+      <h3 class="empty-title">No hay doctores regulares registrados</h3>
+      <p class="empty-description">Los doctores de emergencias 24/7 se gestionan en la sección especializada</p>
+      <button 
+        routerLink="/admin/add-doctor" 
+        mat-raised-button 
+        class="btn-primary">
+        <mat-icon>add</mat-icon>
+        Agregar Doctor Regular
+      </button>
+    </div>
+  </div>
+</div>

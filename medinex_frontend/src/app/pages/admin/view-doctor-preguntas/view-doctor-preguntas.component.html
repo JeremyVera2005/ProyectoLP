@@ -1,0 +1,123 @@
+<div class="container">
+  <!-- Header Section -->
+  <div class="header">
+    <div class="header-content">
+      <div class="icon-container">
+        <mat-icon class="header-icon">quiz</mat-icon>
+      </div>
+      <div class="header-text">
+        <h1 class="header-title">Preguntas del Doctor</h1>
+        <p class="header-subtitle">Gestión de preguntas para <span class="doctor-name">{{ titulo }}</span></p>
+      </div>
+      <div class="header-actions">
+        <button 
+          mat-fab 
+          class="add-button"
+          [routerLink]="'/admin/add-pregunta/' + doctorId + '/' + titulo"
+          matTooltip="Agregar nueva pregunta">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="loading">
+    <div class="loading-content">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p class="loading-text">Cargando preguntas del doctor...</p>
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div class="error-state" *ngIf="error && !loading">
+    <div class="error-content">
+      <mat-icon class="error-icon">error</mat-icon>
+      <h3 class="error-title">Error al cargar preguntas</h3>
+      <p class="error-description">{{ error }}</p>
+      <button mat-raised-button color="primary" (click)="reloadData()">
+        <mat-icon>refresh</mat-icon>
+        Reintentar
+      </button>
+    </div>
+  </div>
+
+  <!-- Questions List -->
+  <div class="questions-wrapper" *ngIf="!loading && !error && preguntas.length > 0">
+    <div class="questions-grid">
+      <div class="question-card" *ngFor="let p of preguntas; let i = index; trackBy: trackByQuestion">
+        <!-- Question Header -->
+        <div class="question-header">
+          <div class="question-number">
+            <span class="number">{{ i + 1 }}</span>
+          </div>
+          <div class="question-content">
+            <p class="question-text" [innerHTML]="p.contenido"></p>
+          </div>
+        </div>
+
+        <!-- Options Grid -->
+        <div class="options-section">
+          <h4 class="options-title">
+            <mat-icon>format_list_bulleted</mat-icon>
+            Opciones de Respuesta
+          </h4>
+          <div class="options-grid">
+            <div class="option-item">
+              <span class="option-letter">A)</span>
+              <span class="option-text">{{ p.opcion1 }}</span>
+            </div>
+            <div class="option-item">
+              <span class="option-letter">B)</span>
+              <span class="option-text">{{ p.opcion2 }}</span>
+            </div>
+            <div class="option-item">
+              <span class="option-letter">C)</span>
+              <span class="option-text">{{ p.opcion3 }}</span>
+            </div>
+            <div class="option-item">
+              <span class="option-letter">D)</span>
+              <span class="option-text">{{ p.opcion4 }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="card-actions">
+          <button 
+            mat-stroked-button 
+            class="edit-btn"
+            [routerLink]="'/admin/pregunta/' + p.preguntaId"
+            matTooltip="Editar pregunta">
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+          </button>
+          <button 
+            mat-stroked-button 
+            class="delete-btn"
+            (click)="eliminarPregunta(p.preguntaId)"
+            matTooltip="Eliminar pregunta">
+            <mat-icon>delete</mat-icon>
+            <span>Eliminar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="!loading && !error && preguntas.length === 0">
+    <div class="empty-content">
+      <mat-icon class="empty-icon">quiz</mat-icon>
+      <h3 class="empty-title">No hay preguntas disponibles</h3>
+      <p class="empty-description">Comience agregando la primera pregunta para <strong>{{ titulo }}</strong></p>
+      <button 
+        mat-raised-button 
+        class="btn-primary"
+        [routerLink]="'/admin/add-pregunta/' + doctorId + '/' + titulo">
+        <mat-icon>add</mat-icon>
+        Agregar Primera Pregunta
+      </button>
+    </div>
+  </div>
+</div>

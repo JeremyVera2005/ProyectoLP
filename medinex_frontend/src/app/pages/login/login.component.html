@@ -1,0 +1,94 @@
+<div class="bootstrap-wrapper">
+  <div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+      <div class="col-md-5 col-lg-4">
+        <mat-card class="login-card">
+          <!-- Botón de volver -->
+          <div class="back-button-container">
+            <button 
+              mat-icon-button 
+              [routerLink]="'/home'"
+              class="back-button"
+              matTooltip="Volver al inicio">
+              <mat-icon>arrow_back</mat-icon>
+            </button>
+          </div>
+
+          <!-- Header con logo -->
+          <div class="login-header text-center">
+            <div class="logo-container">
+              <img src="assets/logo.png" alt="MEDINEX Logo" class="login-logo">
+            </div>
+            <h1 class="login-title">Inicio de sesión</h1>
+            <p class="login-subtitle">Ingresa a tu cuenta MEDINEX</p>
+          </div>
+
+          <!-- Formulario -->
+          <form (ngSubmit)="formSubmit()" class="login-form">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Nombre de usuario</mat-label>
+              <input 
+                [(ngModel)]="loginData.username" 
+                name="username" 
+                required  
+                matInput 
+                placeholder="Digite su nombre de usuario"
+                autocomplete="username">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-hint>El nombre de usuario debe ser válido</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Contraseña</mat-label>
+              <input 
+                [(ngModel)]="loginData.password" 
+                name="password" 
+                required  
+                type="password" 
+                matInput 
+                placeholder="Digite su contraseña"
+                autocomplete="current-password">
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-hint>La contraseña debe ser válida</mat-hint>
+            </mat-form-field>
+
+            <!-- Botones de acción -->
+            <div class="button-container">
+              <button 
+                type="submit" 
+                mat-raised-button 
+                color="primary" 
+                class="login-button">
+                Iniciar sesión
+              </button>
+              
+              <button 
+                type="reset" 
+                mat-stroked-button 
+                color="accent" 
+                class="clear-button">
+                Limpiar
+              </button>
+            </div>
+          </form>
+
+          <!-- Divisor -->
+          <mat-divider class="login-divider"></mat-divider>
+
+          <!-- Enlace de registro -->
+          <div class="signup-section text-center">
+            <p class="signup-text">¿No tienes cuenta?</p>
+            <button 
+              mat-button 
+              color="primary" 
+              [routerLink]="'/signup'"
+              class="signup-link">
+              <mat-icon>person_add</mat-icon>
+              Pulsa aquí para registrarte
+            </button>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,284 @@
+/* Contenedor principal */
+.bootstrap-wrapper {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+/* Botón de volver */
+.back-button-container {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #667eea !important;
+  border: 1px solid rgba(102, 126, 234, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+  width: 48px !important;
+  height: 48px !important;
+}
+
+.back-button:hover {
+  background: rgba(102, 126, 234, 0.1) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3) !important;
+  border-color: rgba(102, 126, 234, 0.5) !important;
+}
+
+.back-button mat-icon {
+  color: #667eea !important;
+  font-size: 24px !important;
+}
+
+/* Tarjeta de login */
+.login-card {
+  position: relative;
+  max-width: 100%;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Header del login */
+.login-header {
+  margin-bottom: 2rem;
+}
+
+.logo-container {
+  margin-bottom: 1rem;
+}
+
+.login-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.login-logo:hover {
+  transform: scale(1.05);
+}
+
+.login-title {
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.login-subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Formulario */
+.login-form {
+  margin-bottom: 1.5rem;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Personalización de los campos de material */
+::ng-deep .mat-mdc-form-field {
+  .mat-mdc-text-field-wrapper {
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .mdc-text-field--outlined .mdc-notched-outline__leading,
+  .mdc-text-field--outlined .mdc-notched-outline__notch,
+  .mdc-text-field--outlined .mdc-notched-outline__trailing {
+    border-color: rgba(102, 126, 234, 0.3);
+    border-width: 2px;
+  }
+  
+  &.mat-focused {
+    .mdc-text-field--outlined .mdc-notched-outline__leading,
+    .mdc-text-field--outlined .mdc-notched-outline__notch,
+    .mdc-text-field--outlined .mdc-notched-outline__trailing {
+      border-color: #667eea;
+    }
+  }
+}
+
+/* Botones */
+.button-container {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.login-button {
+  flex: 2;
+  height: 48px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.clear-button {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  font-weight: 500;
+  border: 2px solid #667eea;
+  color: #667eea;
+  transition: all 0.3s ease;
+}
+
+.clear-button:hover {
+  background-color: rgba(102, 126, 234, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Divisor */
+.login-divider {
+  margin: 1.5rem 0;
+  background-color: rgba(102, 126, 234, 0.2);
+}
+
+/* Sección de registro */
+.signup-section {
+  padding-top: 1rem;
+}
+
+.signup-text {
+  color: #6c757d;
+  margin: 0 0 0.75rem 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.signup-link {
+  background: rgba(102, 126, 234, 0.1) !important;
+  color: #667eea !important;
+  border: 1px solid rgba(102, 126, 234, 0.3) !important;
+  border-radius: 20px !important;
+  padding: 10px 24px !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  transition: all 0.3s ease !important;
+  min-height: 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.signup-link:hover {
+  background: rgba(102, 126, 234, 0.2) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3) !important;
+  border-color: rgba(102, 126, 234, 0.5) !important;
+}
+
+.signup-link mat-icon {
+  color: #667eea !important;
+  font-size: 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Iconos */
+::ng-deep .mat-icon {
+  color: #667eea;
+  opacity: 0.7;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .bootstrap-wrapper {
+    padding: 10px;
+  }
+  
+  .login-card {
+    padding: 1.5rem;
+    margin: 0 10px;
+  }
+  
+  .back-button-container {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+  
+  .back-button {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  .back-button mat-icon {
+    font-size: 20px !important;
+  }
+  
+  .login-title {
+    font-size: 1.5rem;
+  }
+  
+  .button-container {
+    flex-direction: column;
+  }
+  
+  .login-button,
+  .clear-button {
+    flex: none;
+    width: 100%;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Estados de hover para mejorar la UX */
+.login-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* Estilo para el texto de ayuda */
+::ng-deep .mat-mdc-form-field-hint {
+  color: #667eea;
+  font-size: 0.8rem;
+}

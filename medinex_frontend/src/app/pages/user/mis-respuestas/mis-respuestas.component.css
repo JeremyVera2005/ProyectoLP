@@ -1,0 +1,333 @@
+.container-fluid {
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.header-image {
+    background-color: #4caf50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-info-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 24px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.user-avatar {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-avatar mat-icon {
+    font-size: 40px;
+    height: 40px;
+    width: 40px;
+}
+
+.user-details h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.user-details p {
+    margin: 0 0 16px 0;
+    opacity: 0.9;
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.filter-card {
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mat-table {
+    width: 100%;
+}
+
+.mat-header-cell {
+    font-weight: 600;
+    background-color: #fafafa;
+    color: #333;
+    padding: 16px 12px;
+}
+
+.mat-cell {
+    padding: 16px 12px;
+}
+
+.respuesta-row:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.doctor-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.doctor-icon {
+    color: #4caf50;
+    font-size: 24px;
+    height: 24px;
+    width: 24px;
+}
+
+.doctor-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.doctor-specialty {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 4px;
+}
+
+.date-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+}
+
+.date-info mat-icon {
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+}
+
+.score-container {
+    display: flex;
+    align-items: center;
+}
+
+.mat-chip-set {
+    margin: 0;
+}
+
+.mat-chip {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mat-chip mat-icon {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+}
+
+.observations {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.no-observations {
+    color: #999;
+    font-style: italic;
+}
+
+.action-button {
+    font-size: 0.85rem;
+    padding: 8px 16px;
+}
+
+.action-button mat-icon {
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    margin-right: 4px;
+}
+
+.no-data {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}
+
+.no-data mat-icon {
+    font-size: 64px;
+    height: 64px;
+    width: 64px;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.no-data h3 {
+    margin: 0 0 12px 0;
+    color: #333;
+}
+
+.no-data p {
+    margin: 0 0 24px 0;
+    font-size: 1rem;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.me-2 {
+    margin-right: 8px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-items-end {
+    align-items: flex-end;
+}
+
+.mb-4 {
+    margin-bottom: 24px;
+}
+
+.mat-progress-bar {
+    margin-bottom: 16px;
+}
+
+/* Estados de puntuación */
+.mat-chip.mat-primary {
+    background-color: #4caf50;
+    color: white;
+}
+
+.mat-chip.mat-accent {
+    background-color: #ff9800;
+    color: white;
+}
+
+.mat-chip.mat-warn {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 10px;
+    }
+
+    .user-info-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .user-avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .user-avatar mat-icon {
+        font-size: 30px;
+        height: 30px;
+        width: 30px;
+    }
+
+    .stats {
+        justify-content: center;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        font-size: 0.9rem;
+    }
+
+    .mat-cell,
+    .mat-header-cell {
+        padding: 8px 6px;
+    }
+
+    .doctor-info {
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+    }
+
+    .action-button {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .displayedColumns {
+        font-size: 0.8rem;
+    }
+
+    .action-button span {
+        display: none;
+    }
+
+    .action-button mat-icon {
+        margin-right: 0;
+    }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+    .container-fluid {
+        background-color: #303030;
+    }
+
+    .filter-card,
+    .table-container {
+        background-color: #424242;
+    }
+
+    .mat-header-cell {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .respuesta-row:hover {
+        background-color: #555;
+    }
+
+    .doctor-name {
+        color: #fff;
+    }
+
+    .observations {
+        color: #ccc;
+    }
+}

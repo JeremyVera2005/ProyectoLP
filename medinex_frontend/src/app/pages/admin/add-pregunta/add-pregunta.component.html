@@ -1,0 +1,147 @@
+<div class="container">
+  <!-- Header Section -->
+  <div class="header">
+    <div class="header-content">
+      <div class="icon-container">
+        <mat-icon class="header-icon">quiz</mat-icon>
+      </div>
+      <div class="header-text">
+        <h1 class="header-title">Nueva Pregunta</h1>
+        <p class="header-subtitle">Agregar pregunta para <span class="doctor-name">{{ titulo }}</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Section -->
+  <div class="form-container">
+    <form (submit)="formSubmit()" class="question-form">
+      <!-- Contenido de la Pregunta -->
+      <div class="section">
+        <h3 class="section-title">
+          <mat-icon class="section-icon">help_outline</mat-icon>
+          Contenido de la Pregunta
+        </h3>
+        
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Pregunta</mat-label>
+          <textarea 
+            matInput 
+            rows="4" 
+            placeholder="Escriba aquí la pregunta médica..."
+            name="contenido" 
+            [(ngModel)]="pregunta.contenido"
+            required>
+          </textarea>
+          <mat-icon matSuffix>edit</mat-icon>
+          <mat-hint>Escriba una pregunta clara y específica</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <!-- Opciones de Respuesta -->
+      <div class="section">
+        <h3 class="section-title">
+          <mat-icon class="section-icon">format_list_bulleted</mat-icon>
+          Opciones de Respuesta
+        </h3>
+        
+        <div class="options-grid">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Opción A</mat-label>
+            <input 
+              matInput 
+              type="text"
+              name="opcion1"
+              [(ngModel)]="pregunta.opcion1"
+              placeholder="Primera opción"
+              required>
+            <mat-icon matSuffix>looks_one</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Opción B</mat-label>
+            <input 
+              matInput 
+              type="text"
+              name="opcion2"
+              [(ngModel)]="pregunta.opcion2"
+              placeholder="Segunda opción"
+              required>
+            <mat-icon matSuffix>looks_two</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Opción C</mat-label>
+            <input 
+              matInput 
+              type="text"
+              name="opcion3"
+              [(ngModel)]="pregunta.opcion3"
+              placeholder="Tercera opción"
+              required>
+            <mat-icon matSuffix>looks_3</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Opción D</mat-label>
+            <input 
+              matInput 
+              type="text"
+              name="opcion4"
+              [(ngModel)]="pregunta.opcion4"
+              placeholder="Cuarta opción"
+              required>
+            <mat-icon matSuffix>looks_4</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Respuesta Correcta -->
+      <div class="section">
+        <h3 class="section-title">
+          <mat-icon class="section-icon">check_circle</mat-icon>
+          Respuesta Frecuente
+        </h3>
+        
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Seleccione la respuesta correcta</mat-label>
+          <mat-select [(ngModel)]="pregunta.respuesta" name="respuesta" required>
+            <mat-option value="">Seleccione una opción</mat-option>
+            <mat-option *ngIf="pregunta.opcion1" [value]="pregunta.opcion1">
+              A) {{ pregunta.opcion1 }}
+            </mat-option>
+            <mat-option *ngIf="pregunta.opcion2" [value]="pregunta.opcion2">
+              B) {{ pregunta.opcion2 }}
+            </mat-option>
+            <mat-option *ngIf="pregunta.opcion3" [value]="pregunta.opcion3">
+              C) {{ pregunta.opcion3 }}
+            </mat-option>
+            <mat-option *ngIf="pregunta.opcion4" [value]="pregunta.opcion4">
+              D) {{ pregunta.opcion4 }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>done</mat-icon>
+          <mat-hint>Seleccione cuál es la respuesta correcta</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button 
+          type="button" 
+          mat-stroked-button 
+          class="btn-secondary"
+          [routerLink]="['/admin/ver-preguntas', doctorId, titulo]">
+          <mat-icon>arrow_back</mat-icon>
+          Cancelar
+        </button>
+        <button 
+          type="submit" 
+          mat-raised-button 
+          class="btn-primary">
+          <mat-icon>save</mat-icon>
+          Guardar Pregunta
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

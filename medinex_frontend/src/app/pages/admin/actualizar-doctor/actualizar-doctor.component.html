@@ -1,0 +1,165 @@
+<div class="doctor-form-container">
+  <mat-card class="doctor-card">
+    <!-- Header Section -->
+    <div class="form-header">
+      <h1 class="form-title">
+        {{ isEmergencyMode ? '🚨 Actualizar Doctor de Emergencias 24/7' : '✨ Actualizar Doctor' }}
+      </h1>
+      <p class="form-subtitle">
+        {{ isEmergencyMode ? 
+           'Modifica la información del doctor de emergencias - Disponible las 24 horas' : 
+           'Modifica la información del doctor de manera fácil y segura' }}
+      </p>
+    </div>
+    
+    <!-- Loading State -->
+    <div *ngIf="!doctor" class="loading-container">
+      <mat-spinner diameter="50" color="primary"></mat-spinner>
+      <p class="loading-text">Cargando información del doctor...</p>
+    </div>
+    
+    <!-- Form Section -->
+    <div *ngIf="doctor" class="doctor-form">
+      <form (ngSubmit)="actualizarDatos($event)" #doctorForm="ngForm">
+        
+        <!-- Emergency Mode Indicator -->
+        <div *ngIf="isEmergencyMode" class="emergency-indicator">
+          <mat-icon class="emergency-icon">medical_services</mat-icon>
+          <span class="emergency-text">Modo Emergencias 24/7 - Servicio continuo</span>
+        </div>
+
+        <!-- Basic Information -->
+        <div class="form-field">
+          <mat-form-field appearance="fill">
+            <mat-label>📋 {{ isEmergencyMode ? 'Nombre del Doctor de Emergencias' : 'Título del Doctor' }}</mat-label>
+            <input
+              [(ngModel)]="doctor.titulo"
+              type="text"
+              name="titulo"
+              [placeholder]="isEmergencyMode ? 'Ej: Dr. Juan Pérez - Emergenciólogo' : 'Ej: Dr. Juan Pérez - Cardiólogo'"
+              required
+              matInput>
+            <mat-hint>{{ isEmergencyMode ? 'Nombre del especialista en emergencias' : 'Ingrese el título profesional completo' }}</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="form-field">
+          <mat-form-field appearance="fill">
+            <mat-label>📝 {{ isEmergencyMode ? 'Especialidad en Emergencias' : 'Descripción' }}</mat-label>
+            <textarea
+              [(ngModel)]="doctor.descripcion"
+              name="descripcion"
+              [placeholder]="isEmergencyMode ? 
+                'Especialidades en emergencias, experiencia en cuidados críticos, procedimientos de urgencia...' : 
+                'Describa la experiencia, especialidades y servicios que ofrece el doctor'"
+              matInput
+              rows="6"></textarea>
+            <mat-hint>{{ isEmergencyMode ? 
+              'Describa las competencias específicas en medicina de emergencias' : 
+              'Proporcione una descripción detallada del perfil profesional' }}</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="form-row">
+          <div class="form-col">
+            <mat-form-field appearance="fill">
+              <mat-label>🆔 DNI del Doctor</mat-label>
+              <input
+                [(ngModel)]="doctor.puntosMaximos"
+                type="text"
+                name="puntosMaximos"
+                placeholder="12345678"
+                maxlength="8"
+                pattern="[0-9]{8}"
+                matInput>
+              <mat-hint>Documento Nacional de Identidad (8 dígitos)</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="form-col" *ngIf="!isEmergencyMode">
+            <mat-form-field appearance="fill">
+              <mat-label>❓ Número de Preguntas</mat-label>
+              <input
+                [(ngModel)]="doctor.numeroDePreguntas"
+                type="number"
+                name="numeroDePreguntas"
+                placeholder="10"
+                min="1"
+                matInput>
+              <mat-hint>Cantidad de preguntas por evaluación</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="form-col emergency-info" *ngIf="isEmergencyMode">
+            <div class="emergency-field">
+              <mat-icon class="field-icon">access_time</mat-icon>
+              <div class="field-content">
+                <h4>Disponibilidad 24/7</h4>
+                <p>Siempre disponible para emergencias médicas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Status Toggle -->
+        <div class="status-toggle" *ngIf="!isEmergencyMode">
+          <div>
+            <h4 class="toggle-label">🔄 Estado de Publicación</h4>
+            <small style="color: #7f8c8d;">Controla si el doctor aparece en las búsquedas</small>
+          </div>
+          <mat-slide-toggle 
+            name="activo" 
+            [(ngModel)]="doctor.activo" 
+            color="primary">
+            {{ doctor.activo ? 'Activo' : 'Inactivo' }}
+          </mat-slide-toggle>
+        </div>
+
+        <!-- Emergency Status (Read-only) -->
+        <div class="emergency-status" *ngIf="isEmergencyMode">
+          <div class="status-item">
+            <mat-icon class="status-icon active">check_circle</mat-icon>
+            <span class="status-text">Siempre Activo</span>
+          </div>
+          <div class="status-item">
+            <mat-icon class="status-icon emergency">local_hospital</mat-icon>
+            <span class="status-text">Servicio de Emergencias</span>
+          </div>
+        </div>
+
+        <!-- Service Selection -->
+        <div class="form-field select-field" *ngIf="!isEmergencyMode">
+          <mat-form-field appearance="fill">
+            <mat-label>🏥 Servicio Médico</mat-label>
+            <mat-select name="servicio" [(ngModel)]="doctor.servicio.servicioId">
+              <mat-option *ngFor="let c of servicios" [value]="c.servicioId">
+                {{ c.titulo }}
+              </mat-option>
+            </mat-select>
+            <mat-hint>Seleccione el área de especialización</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <!-- Emergency Service Info (Read-only) -->
+        <div class="emergency-service-info" *ngIf="isEmergencyMode">
+          <mat-icon class="service-icon">medical_services</mat-icon>
+          <div class="service-content">
+            <h4>Servicio: Emergencias 24/7</h4>
+            <p>Atención médica de urgencia disponible las 24 horas del día</p>
+          </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button 
+            type="submit" 
+            mat-raised-button 
+            [class]="isEmergencyMode ? 'submit-btn emergency' : 'submit-btn'"
+            [disabled]="!doctorForm.form.valid">
+            {{ isEmergencyMode ? '🚨 Actualizar Doctor de Emergencias' : '💾 Guardar Cambios' }}
+          </button>
+        </div>
+        
+      </form>
+    </div>
+  </mat-card>
+</div>

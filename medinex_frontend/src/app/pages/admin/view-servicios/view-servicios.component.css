@@ -1,0 +1,412 @@
+/* Contenedor principal */
+.services-wrapper {
+  height: calc(100vh - 64px);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden; /* No scroll global */
+}
+
+.services-container {
+  max-width: 1200px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.services-header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.header-icon {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border-radius: 50%;
+  padding: 1.2rem;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.header-icon:hover {
+  transform: scale(1.05);
+}
+
+.header-icon mat-icon {
+  color: white;
+  font-size: 2.2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.header-text {
+  text-align: left;
+}
+
+.services-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem 0;
+  color: #333;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.services-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Tarjeta principal */
+.services-card {
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border: none;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Header de la tarjeta */
+.card-header {
+  background: rgba(102, 126, 234, 0.05);
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+  padding: 1.5rem 2rem;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.card-title mat-icon {
+  color: #667eea;
+  font-size: 1.5rem;
+}
+
+.card-subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* Contenido de servicios */
+.services-content {
+  padding: 1rem 2rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Estado vacío */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #666;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  width: 4rem;
+  height: 4rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.empty-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: #555;
+}
+
+.empty-subtitle {
+  font-size: 1rem;
+  color: #777;
+  margin: 0;
+}
+
+/* Lista de servicios */
+.services-list {
+  padding: 0;
+  margin: 0;
+}
+
+.service-item {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.service-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.service-main {
+  display: flex;
+  align-items: flex-start;
+  padding: 1.5rem;
+  gap: 1.2rem;
+}
+
+.service-icon-wrapper {
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-icon {
+  color: white;
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.service-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.service-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+}
+
+.service-description {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.service-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.action-btn {
+  width: 36px !important;
+  height: 36px !important;
+  transition: all 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #667eea !important;
+}
+
+.edit-btn:hover {
+  background-color: #5a6fd8 !important;
+  transform: scale(1.1);
+}
+
+.delete-btn {
+  background-color: #f44336 !important;
+}
+
+.delete-btn:hover {
+  background-color: #e53935 !important;
+  transform: scale(1.1);
+}
+
+.action-btn mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: white !important;
+}
+
+.service-divider {
+  margin: 0 1.5rem 1rem 1.5rem;
+  background-color: rgba(102, 126, 234, 0.2);
+}
+
+/* Acciones de la tarjeta */
+.services-actions {
+  padding: 2rem;
+  background: rgba(102, 126, 234, 0.02);
+  border-top: 1px solid rgba(102, 126, 234, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+.add-service-btn {
+  min-width: 180px;
+  height: 48px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.add-service-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Material Design */
+::ng-deep .mat-mdc-card-header .mat-mdc-card-title {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
+
+::ng-deep .service-actions .mat-mdc-mini-fab {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+}
+::ng-deep .service-actions .mat-mdc-mini-fab:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .services-wrapper {
+    padding: 0.8rem;
+  }
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .header-text {
+    text-align: center;
+  }
+  .services-title {
+    font-size: 1.8rem;
+  }
+  .services-subtitle {
+    font-size: 0.9rem;
+  }
+  .header-icon {
+    padding: 0.8rem;
+  }
+  .header-icon mat-icon {
+    font-size: 1.8rem;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+  .service-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .service-icon-wrapper {
+    align-self: center;
+  }
+  .service-details {
+    text-align: center;
+  }
+  .service-actions {
+    flex-direction: row;
+    align-self: center;
+    gap: 1rem;
+  }
+  .services-actions {
+    padding: 1.5rem;
+  }
+  .add-service-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-title {
+    font-size: 1.6rem;
+  }
+  .card-title {
+    font-size: 1.2rem;
+  }
+  .service-main {
+    padding: 1rem;
+  }
+  .service-title {
+    font-size: 1.1rem;
+  }
+  .service-description {
+    font-size: 0.9rem;
+  }
+  .empty-state {
+    padding: 2rem 1rem;
+  }
+  .empty-icon {
+    font-size: 2.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.services-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+.service-item {
+  animation: fadeInUp 0.6s ease-out;
+}
+.service-item:nth-child(1) { animation-delay: 0.1s; }
+.service-item:nth-child(2) { animation-delay: 0.2s; }
+.service-item:nth-child(3) { animation-delay: 0.3s; }
+.service-item:nth-child(4) { animation-delay: 0.4s; }
+.service-item:nth-child(5) { animation-delay: 0.5s; }
+
+.services-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}

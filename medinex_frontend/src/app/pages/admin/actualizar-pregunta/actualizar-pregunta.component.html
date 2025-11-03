@@ -1,0 +1,152 @@
+<div class="container">
+  <!-- Header Section -->
+  <div class="header">
+    <div class="header-content">
+      <div class="icon-container">
+        <mat-icon class="header-icon">edit</mat-icon>
+      </div>
+      <div class="header-text">
+        <h1 class="header-title">Actualizar Pregunta</h1>
+        <p class="header-subtitle">Modificar pregunta para <span class="doctor-name">{{ pregunta?.doctor?.titulo }}</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Section -->
+  <div class="form-wrapper">
+    <mat-card class="form-card">
+      <mat-card-header class="card-header">
+        <mat-card-title class="card-title">
+          <mat-icon>quiz</mat-icon>
+          Detalles de la Pregunta
+        </mat-card-title>
+        <mat-card-subtitle class="card-subtitle">
+          Complete todos los campos para actualizar la pregunta
+        </mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content class="card-content">
+        <form class="question-form" *ngIf="pregunta" (ngSubmit)="actualizarDatosDeLaPregunta()">
+          <!-- Question Content -->
+          <div class="question-section">
+            <mat-form-field class="w100">
+              <mat-label>Contenido de la Pregunta</mat-label>
+              <textarea 
+                rows="6" 
+                matInput 
+                placeholder="Escribe el contenido de la pregunta aquí..." 
+                name="contenido" 
+                [(ngModel)]="pregunta.contenido"
+                class="question-textarea">
+              </textarea>
+            </mat-form-field>
+          </div>
+
+          <!-- Options Section -->
+          <div class="options-section">
+            <h3 class="section-title">
+              <mat-icon>format_list_bulleted</mat-icon>
+              Opciones de Respuesta
+            </h3>
+            
+            <div class="options-grid">
+              <div class="option-group">
+                <mat-form-field class="w100">
+                  <mat-label>Opción A</mat-label>
+                  <input
+                    type="text"
+                    matInput
+                    name="opcion1"
+                    [(ngModel)]="pregunta.opcion1"
+                    placeholder="Primera opción">
+                </mat-form-field>
+              </div>
+              
+              <div class="option-group">
+                <mat-form-field class="w100">
+                  <mat-label>Opción B</mat-label>
+                  <input
+                    type="text"
+                    matInput
+                    name="opcion2"
+                    [(ngModel)]="pregunta.opcion2"
+                    placeholder="Segunda opción">
+                </mat-form-field>
+              </div>
+              
+              <div class="option-group">
+                <mat-form-field class="w100">
+                  <mat-label>Opción C</mat-label>
+                  <input
+                    type="text"
+                    matInput
+                    name="opcion3"
+                    [(ngModel)]="pregunta.opcion3"
+                    placeholder="Tercera opción">
+                </mat-form-field>
+              </div>
+              
+              <div class="option-group">
+                <mat-form-field class="w100">
+                  <mat-label>Opción D</mat-label>
+                  <input
+                    type="text"
+                    matInput
+                    name="opcion4"
+                    [(ngModel)]="pregunta.opcion4"
+                    placeholder="Cuarta opción">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <!-- Correct Answer Section -->
+          <div class="answer-section">
+            <h3 class="section-title">
+              <mat-icon>check_circle</mat-icon>
+              Mejor opcion
+            </h3>
+            
+            <mat-form-field class="w100">
+              <mat-label>Seleccione la mejor opcion</mat-label>
+              <mat-select [(ngModel)]="pregunta.respuesta" name="respuesta">
+                <mat-option *ngIf="pregunta.opcion1" [value]="pregunta.opcion1">
+                  A) {{ pregunta.opcion1 }}
+                </mat-option>
+                <mat-option *ngIf="pregunta.opcion2" [value]="pregunta.opcion2">
+                  B) {{ pregunta.opcion2 }}
+                </mat-option>
+                <mat-option *ngIf="pregunta.opcion3" [value]="pregunta.opcion3">
+                  C) {{ pregunta.opcion3 }}
+                </mat-option>
+                <mat-option *ngIf="pregunta.opcion4" [value]="pregunta.opcion4">
+                  D) {{ pregunta.opcion4 }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- Actions -->
+          <div class="actions-section">
+            <button 
+              mat-raised-button 
+              color="primary" 
+              type="submit"
+              class="update-button">
+              <mat-icon>save</mat-icon>
+              Actualizar Pregunta
+            </button>
+            <button 
+              mat-stroked-button 
+              type="button"
+              class="cancel-button"
+              routerLink="/admin">
+              <mat-icon>cancel</mat-icon>
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

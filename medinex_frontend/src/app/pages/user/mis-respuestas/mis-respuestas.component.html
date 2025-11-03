@@ -1,0 +1,166 @@
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12">
+            <mat-card>
+                <mat-card-header>
+                    <div mat-card-avatar class="header-image">
+                        <mat-icon>assignment_turned_in</mat-icon>
+                    </div>
+                    <mat-card-title>Mis Respuestas Médicas</mat-card-title>
+                    <mat-card-subtitle>Historial de cuestionarios completados</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <!-- Información del usuario -->
+                    <div class="user-info-card mb-4" *ngIf="usuario">
+                        <div class="user-avatar">
+                            <mat-icon>person</mat-icon>
+                        </div>
+                        <div class="user-details">
+                            <h3>{{usuario.username}}</h3>
+                            <p>{{usuario.email}}</p>
+                            <div class="stats">
+                                <span class="stat-item">
+                                    <mat-icon>assignment</mat-icon>
+                                    {{misRespuestas.length}} cuestionarios completados
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filtros -->
+                    <mat-card class="filter-card mb-4">
+                        <mat-card-header>
+                            <mat-card-title>Filtrar Respuestas</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field class="w-100">
+                                        <mat-label>Filtrar por Doctor</mat-label>
+                                        <mat-select [(value)]="filtroDoctor" (selectionChange)="aplicarFiltros()">
+                                            <mat-option value="">Todos los doctores</mat-option>
+                                            <mat-option *ngFor="let doctor of doctores" [value]="doctor.doctorId">
+                                                {{doctor.nombre}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="w-100">
+                                        <mat-label>Filtrar por Fecha</mat-label>
+                                        <input matInput type="date" [(ngModel)]="filtroFecha"
+                                            (change)="aplicarFiltros()">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4 d-flex align-items-end">
+                                    <button mat-raised-button color="warn" (click)="limpiarFiltros()" class="me-2">
+                                        <mat-icon>clear</mat-icon>
+                                        Limpiar
+                                    </button>
+                                    <button mat-raised-button color="accent" (click)="exportarMisRespuestas()">
+                                        <mat-icon>file_download</mat-icon>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <!-- Tabla de respuestas -->
+                    <div class="table-container">
+                        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+                        <table mat-table [dataSource]="respuestasFiltradas" class="w-100" matSort>
+
+                            <!-- Columna Doctor -->
+                            <ng-container matColumnDef="doctor">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Doctor</th>
+                                <td mat-cell *matCellDef="let respuesta">
+                                    <div class="doctor-info">
+                                        <mat-icon class="doctor-icon">local_hospital</mat-icon>
+                                        <div>
+                                            <div class="doctor-name">{{respuesta.doctor?.nombre || 'N/A'}}</div>
+                                            <div class="doctor-specialty">{{respuesta.doctor?.categoria?.titulo || ''}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <!-- Columna Fecha -->
+                            <ng-container matColumnDef="fecha">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+                                <td mat-cell *matCellDef="let respuesta">
+                                    <div class="date-info">
+                                        <mat-icon>schedule</mat-icon>
+                                        {{respuesta.fechaRespuesta | date:'medium'}}
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <!-- Columna Estado -->
+                            <ng-container matColumnDef="estado">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+                                <td mat-cell *matCellDef="let respuesta">
+                                    <div class="score-container">
+                                        <mat-chip-set>
+                                            <mat-chip [color]="getEstadoColor(respuesta.estado)"
+                                                [highlighted]="true">
+                                                <mat-icon
+                                                    matChipAvatar>{{getEstadoIcon(respuesta.estado)}}</mat-icon>
+                                                {{getEstadoLabel(respuesta.estado)}}
+                                            </mat-chip>
+                                        </mat-chip-set>
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <!-- Columna Observaciones -->
+                            <ng-container matColumnDef="observaciones">
+                                <th mat-header-cell *matHeaderCellDef>Observaciones</th>
+                                <td mat-cell *matCellDef="let respuesta">
+                                    <div class="observations">
+                                        <span *ngIf="respuesta.observaciones; else noObservations">
+                                            {{respuesta.observaciones | slice:0:50}}
+                                            <span *ngIf="respuesta.observaciones.length > 50">...</span>
+                                        </span>
+                                        <ng-template #noObservations>
+                                            <span class="no-observations">Sin observaciones</span>
+                                        </ng-template>
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <!-- Columna Acciones -->
+                            <ng-container matColumnDef="acciones">
+                                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                                <td mat-cell *matCellDef="let respuesta">
+                                    <button mat-raised-button color="primary" (click)="verDetalleRespuesta(respuesta)"
+                                        class="action-button">
+                                        <mat-icon>visibility</mat-icon>
+                                        Ver Detalle
+                                    </button>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="respuesta-row"></tr>
+                        </table>
+
+                        <!-- Mensaje cuando no hay datos -->
+                        <div *ngIf="!loading && respuestasFiltradas.length === 0" class="no-data">
+                            <mat-icon>assignment</mat-icon>
+                            <h3>No tienes respuestas registradas</h3>
+                            <p>Aún no has completado ningún cuestionario médico.</p>
+                            <button mat-raised-button color="primary" routerLink="/user-dashboard">
+                                <mat-icon>add</mat-icon>
+                                Completar Cuestionario
+                            </button>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

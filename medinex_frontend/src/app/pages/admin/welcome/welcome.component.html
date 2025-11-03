@@ -1,0 +1,136 @@
+<div class="welcome-container">
+  <!-- Header de bienvenida -->
+  <div class="welcome-header">
+    <mat-card class="welcome-card">
+      <mat-card-header class="welcome-card-header">
+        <div mat-card-avatar class="admin-avatar">
+          <mat-icon>admin_panel_settings</mat-icon>
+        </div>
+        <mat-card-title class="welcome-title">¡Bienvenido Administrador!</mat-card-title>
+        <mat-card-subtitle class="welcome-subtitle">Panel de Administración MEDINEX</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+
+  <!-- Tarjetas de estadísticas rápidas -->
+  <div class="stats-grid">
+    <mat-card class="stat-card stat-card-primary">
+      <div class="stat-content">
+        <mat-icon class="stat-icon">medical_services</mat-icon>
+        <div class="stat-text">
+          <h3>Servicios</h3>
+          <p>Gestión médica</p>
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card stat-card-success">
+      <div class="stat-content">
+        <mat-icon class="stat-icon">person_add</mat-icon>
+        <div class="stat-text">
+          <h3>Doctores</h3>
+          <p>Personal médico</p>
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card stat-card-info">
+      <div class="stat-content">
+        <mat-icon class="stat-icon">calendar_today</mat-icon>
+        <div class="stat-text">
+          <h3>Consultas</h3>
+          <p>Citas médicas</p>
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card stat-card-warning">
+      <div class="stat-content">
+        <mat-icon class="stat-icon">assignment</mat-icon>
+        <div class="stat-text">
+          <h3>Asignaciones</h3>
+          <p>Doctor-Servicio</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <!-- Sección de funciones principales -->
+  <mat-card class="functions-card">
+    <mat-card-header>
+      <mat-card-title class="functions-title">
+        <mat-icon>settings</mat-icon>
+        Sus funciones principales
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="functions-grid">
+        <div class="function-item">
+          <mat-icon class="function-icon services-icon">medical_services</mat-icon>
+          <div class="function-text">
+            <h4>Gestionar Servicios</h4>
+            <p>Administrar los servicios médicos disponibles</p>
+          </div>
+          <button mat-fab mini color="primary" routerLink="/admin/servicios">
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+
+        <div class="function-item">
+          <mat-icon class="function-icon doctors-icon">person</mat-icon>
+          <div class="function-text">
+            <h4>Gestionar Doctores</h4>
+            <p>Administrar el personal médico</p>
+          </div>
+          <button mat-fab mini color="accent" routerLink="/admin/doctores">
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+
+        <div class="function-item">
+          <mat-icon class="function-icon assignment-icon">assignment_ind</mat-icon>
+          <div class="function-text">
+            <h4>Asignar Doctores</h4>
+            <p>Asignar doctores a servicios específicos</p>
+          </div>
+          <button mat-fab mini color="warn" routerLink="/admin/doctores">
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+
+        <div class="function-item">
+          <mat-icon class="function-icon responses-icon">assignment_turned_in</mat-icon>
+          <div class="function-text">
+            <h4>Citas Medicas</h4>
+            <p>Administrar respuestas de usuarios</p>
+          </div>
+          <button mat-fab mini style="background-color: #9C27B0;" routerLink="/admin/respuestas">
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+
+        <div class="function-item">
+          <mat-icon class="function-icon consultations-icon">calendar_month</mat-icon>
+          <div class="function-text">
+            <h4>Gestionar Consultas</h4>
+            <p>Administrar citas y consultas médicas</p>
+          </div>
+          <button mat-fab mini style="background-color: #4CAF50;" routerLink="/admin">
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+
+        <div class="function-item">
+          <mat-icon class="function-icon schedule-icon">schedule</mat-icon>
+          <div class="function-text">
+            <h4>Asignar Consultas</h4>
+            <p>Programar consultas para cada doctor</p>
+          </div>
+          <button mat-fab mini style="background-color: #FF9800;" routerLink="/admin">
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,83 @@
+<div class="services-wrapper">
+  <div class="services-container">
+    <!-- Header -->
+    <div class="services-header">
+      <div class="header-content">
+        <div class="header-icon">
+          <mat-icon>medical_services</mat-icon>
+        </div>
+        <div class="header-text">
+          <h1 class="services-title">Gestión de Servicios</h1>
+          <p class="services-subtitle">Administre todos los servicios médicos disponibles</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de servicios -->
+    <mat-card class="services-card">
+      <mat-card-header class="card-header">
+        <mat-card-title class="card-title">
+          <mat-icon>list</mat-icon>
+          Todos los Servicios
+        </mat-card-title>
+        <mat-card-subtitle class="card-subtitle">
+          {{servicios.length}} servicio{{servicios.length !== 1 ? 's' : ''}} disponible{{servicios.length !== 1 ? 's' : ''}}
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content class="services-content">
+        <div *ngIf="servicios.length === 0" class="empty-state">
+          <mat-icon class="empty-icon">inbox</mat-icon>
+          <h3 class="empty-title">No hay servicios disponibles</h3>
+          <p class="empty-subtitle">Comience agregando su primer servicio médico</p>
+        </div>
+
+        <div *ngIf="servicios.length > 0" class="services-list">
+          <div *ngFor="let servicio of servicios; let last = last" class="service-item">
+            <div class="service-main">
+              <div class="service-icon-wrapper">
+                <mat-icon class="service-icon">local_hospital</mat-icon>
+              </div>
+              
+              <div class="service-details">
+                <h3 class="service-title">{{ servicio.titulo }}</h3>
+                <p class="service-description">{{ servicio.descripcion }}</p>
+              </div>
+              
+              <div class="service-actions">
+                <button mat-mini-fab 
+                        color="primary"
+                        class="action-btn edit-btn" 
+                        matTooltip="Editar servicio"
+                        (click)="editarServicio(servicio.servicioId || servicio.id)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-mini-fab 
+                        color="warn"
+                        class="action-btn delete-btn" 
+                        matTooltip="Eliminar servicio"
+                        (click)="eliminarServicio(servicio.servicioId || servicio.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+            
+            <mat-divider *ngIf="!last" class="service-divider"></mat-divider>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <!-- Botón agregar servicio -->
+      <mat-card-actions class="services-actions">
+        <button 
+          routerLink="/admin/add-servicio" 
+          mat-raised-button 
+          color="primary" 
+          class="add-service-btn">
+          <mat-icon>add</mat-icon>
+          Agregar Servicio
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

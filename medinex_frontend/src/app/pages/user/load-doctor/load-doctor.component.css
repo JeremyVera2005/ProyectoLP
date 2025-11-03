@@ -1,0 +1,362 @@
+/* Container styles */
+.bootstrap-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px 0;
+}
+
+.container-fluid h1 {
+  color: white;
+  font-weight: 300;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 2.5rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Doctor Card Styles */
+.doctor-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.doctor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Avatar Styles */
+.doctor-avatar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.avatar-icon {
+  color: white;
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+}
+
+/* Header Styles */
+.doctor-title {
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.doctor-specialty {
+  color: #7f8c8d;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.specialty-icon {
+  color: #3498db;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+/* Content Styles */
+.doctor-content {
+  padding: 20px 24px;
+}
+
+.doctor-schedule {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(52, 152, 219, 0.1);
+  border-radius: 12px;
+  border-left: 4px solid #3498db;
+}
+
+.schedule-icon {
+  color: #3498db;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+}
+
+.doctor-schedule p {
+  margin: 0;
+  color: #2c3e50;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* Stats Styles */
+.doctor-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: rgba(46, 204, 113, 0.1);
+  border-radius: 10px;
+  border-left: 3px solid #2ecc71;
+}
+
+.stat-icon {
+  color: #27ae60;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.stat-label {
+  color: #7f8c8d;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.stat-value {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+/* Actions Styles */
+.doctor-actions {
+  padding: 16px 24px;
+  background: rgba(248, 249, 250, 0.8);
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.action-btn {
+  width: 100%;
+  border-radius: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  transition: all 0.3s ease;
+  min-height: 45px;
+}
+
+.action-btn.accent {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  border: none;
+}
+
+.action-btn.accent:hover {
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+.action-btn mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+/* Empty State */
+.empty-state-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 40px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+  color: #bdc3c7;
+  margin-bottom: 20px;
+}
+
+.empty-state-card h3 {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.empty-state-card p {
+  color: #7f8c8d;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Loading State */
+.mat-card .text-center {
+  padding: 40px;
+}
+
+.mat-spinner {
+  margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container-fluid h1 {
+    font-size: 2rem;
+  }
+  
+  .doctor-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .doctor-actions {
+    flex-direction: column;
+  }
+  
+  .action-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .bootstrap-wrapper {
+    padding: 10px 0;
+  }
+  
+  .container-fluid h1 {
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+  }
+}
+
+/* Quick Access Widget Styles */
+.quick-access-widget {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  border-radius: 20px;
+  padding: 25px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(40, 167, 69, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-access-widget::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.quick-access-widget:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(40, 167, 69, 0.4);
+}
+
+.quick-access-widget:hover::before {
+  transform: scale(1.5);
+}
+
+.widget-icon {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.widget-icon mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  color: white;
+}
+
+.widget-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.widget-description {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.widget-action {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.widget-action:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: white;
+  text-decoration: none;
+  transform: scale(1.05);
+}
+
+/* Responsive styles for widget */
+@media (max-width: 768px) {
+  .quick-access-widget {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .widget-title {
+    font-size: 1.2rem;
+  }
+  
+  .widget-description {
+    font-size: 0.9rem;
+  }
+}

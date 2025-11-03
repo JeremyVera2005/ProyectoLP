@@ -1,0 +1,176 @@
+/* Contenedor principal del dashboard */
+.bootstrap-wrapper {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: calc(100vh - 64px);
+  padding: 0;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.container-fluid {
+  padding: 0;
+  max-width: 100%;
+  height: calc(100vh - 64px);
+}
+
+.row {
+  margin: 0;
+  height: 100%;
+}
+
+/* Columna del sidebar - elemento aside */
+.col-md-3,
+aside.col-md-3 {
+  padding: 0;
+  background: transparent;
+}
+
+/* Columna del contenido principal - elemento main */
+.col-md-9,
+main.col-md-9 {
+  padding: 0;
+  overflow-y: auto;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+/* Mejorar la transición entre componentes */
+.col-md-9 > *,
+main.col-md-9 > * {
+  animation: fadeInSlide 0.5s ease-out;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Personalización del router-outlet */
+router-outlet + * {
+  width: 100%;
+  height: 100%;
+}
+
+/* Sombra sutil para separar el contenido */
+.col-md-9::before,
+main.col-md-9::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    rgba(102, 126, 234, 0.2) 20%, 
+    rgba(102, 126, 234, 0.2) 80%, 
+    transparent 100%);
+  z-index: 0;
+}
+
+/* Smooth scroll para el contenido */
+.col-md-9,
+main.col-md-9 {
+  scroll-behavior: smooth;
+}
+
+/* Mejoras responsivas */
+@media (max-width: 768px) {
+  .bootstrap-wrapper {
+    padding: 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  }
+  
+  .container-fluid {
+    height: auto;
+    min-height: calc(100vh - 64px);
+  }
+  
+  .row {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .col-md-3,
+  aside.col-md-3 {
+    height: auto;
+    order: 2;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+  
+  .col-md-9,
+  main.col-md-9 {
+    height: auto;
+    min-height: 50vh;
+    order: 1;
+    padding: 10px;
+  }
+}
+
+/* Pantallas extra pequeñas */
+@media (max-width: 576px) {
+  .bootstrap-wrapper {
+    min-height: calc(100vh - 56px);
+  }
+  
+  .container-fluid {
+    min-height: calc(100vh - 56px);
+  }
+  
+  .col-md-3,
+  aside.col-md-3 {
+    max-height: 40vh;
+  }
+}
+
+/* Animación suave */
+.bootstrap-wrapper {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Efectos adicionales para mejorar la experiencia */
+.container-fluid {
+  transition: all 0.3s ease;
+}
+
+/* Optimización para el scroll */
+.col-md-9::-webkit-scrollbar,
+main.col-md-9::-webkit-scrollbar {
+  width: 6px;
+}
+
+.col-md-9::-webkit-scrollbar-track,
+main.col-md-9::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+}
+
+.col-md-9::-webkit-scrollbar-thumb,
+main.col-md-9::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.3);
+  border-radius: 3px;
+}
+
+.col-md-9::-webkit-scrollbar-thumb:hover,
+main.col-md-9::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 126, 234, 0.5);
+}

@@ -1,0 +1,87 @@
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <h1>Doctores disponibles</h1>
+    
+    <!-- Loading State -->
+    <div class="row mt20" *ngIf="isLoading">
+      <div class="col-md-12">
+        <mat-card>
+          <mat-card-content class="text-center">
+            <mat-spinner diameter="40"></mat-spinner>
+            <p class="mt-3">Cargando doctores...</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- Doctors List -->
+    <div class="row mt20" *ngIf="!isLoading && doctores && doctores.length > 0">
+      <div class="col-md-6" *ngFor="let e of doctores">
+        <mat-card class="doctor-card mb20">
+          <mat-card-header>
+            <div mat-card-avatar class="doctor-avatar">
+              <mat-icon class="avatar-icon">person</mat-icon>
+            </div>
+            <mat-card-title class="doctor-title">
+              {{ e.titulo }}
+            </mat-card-title>
+            <mat-card-subtitle class="doctor-specialty">
+              <mat-icon class="specialty-icon">medical_services</mat-icon>
+              {{ e.servicio?.titulo || 'Sin especialidad' }}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="doctor-content">
+            <div class="doctor-schedule">
+              <mat-icon class="schedule-icon">schedule</mat-icon>
+              <p>{{ e.descripcion || 'Sin descripción disponible' }}</p>
+            </div>
+            <div class="doctor-stats">
+              <!-- Para doctores de emergencias 24/7: mostrar Atención 24/7 -->
+              <div class="stat-item" *ngIf="e.servicio?.titulo?.toLowerCase().includes('emergencia') || e.numeroDePreguntas == 1000 || e.emergencia24">
+                <mat-icon class="stat-icon">access_time</mat-icon>
+                <span class="stat-label">Atención 24/7</span>
+              </div>
+              
+              <!-- Para doctores regulares: mostrar consultas -->
+              <div class="stat-item" *ngIf="!(e.servicio?.titulo?.toLowerCase().includes('emergencia') || e.numeroDePreguntas == 1000 || e.emergencia24)">
+                <mat-icon class="stat-icon">quiz</mat-icon>
+                <span class="stat-label">Consultas:</span>
+                <span class="stat-value">{{ e.numeroDePreguntas || 0 }}</span>
+              </div>
+              
+              <!-- DNI: siempre se muestra para todos los doctores -->
+              <div class="stat-item">
+                <mat-icon class="stat-icon">fingerprint</mat-icon>
+                <span class="stat-label">DNI:</span>
+                <span class="stat-value">{{ e.puntosMaximos || 'N/A' }}</span>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions class="doctor-actions">
+            <button 
+              mat-raised-button 
+              color="accent" 
+              class="action-btn accent"
+              [routerLink]="'/user-dashboard/instrucciones/' + e.doctorId">
+              <mat-icon>play_arrow</mat-icon>
+              Empezar Consulta
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="row mt20" *ngIf="!isLoading && (!doctores || doctores.length === 0)">
+      <div class="col-md-12">
+        <mat-card class="empty-state-card">
+          <mat-card-content class="text-center">
+            <mat-icon class="empty-icon">person_off</mat-icon>
+            <h3>No hay doctores disponibles</h3>
+            <p>En este momento no hay doctores activos en {{ catId == 0 ? 'el sistema' : 'esta especialidad' }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

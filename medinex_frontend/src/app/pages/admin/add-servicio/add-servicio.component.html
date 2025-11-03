@@ -1,0 +1,89 @@
+<div class="add-service-wrapper">
+  <div class="add-service-container">
+    <!-- Header del formulario -->
+    <div class="form-header">
+      <div class="header-content">
+        <div class="header-icon">
+          <mat-icon>add_business</mat-icon>
+        </div>
+        <div class="header-text">
+          <h1 class="form-title">{{ isEditMode ? 'Editar servicio' : 'Agregar nuevo servicio' }}</h1>
+          <p class="form-subtitle">{{ isEditMode ? 'Modifique los campos para actualizar el servicio médico' : 'Complete los campos para crear un nuevo servicio médico' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario -->
+    <mat-card class="form-card">
+      <mat-card-content>
+        <form (ngSubmit)="formSubmit()" class="service-form">
+          <!-- Campo Título -->
+          <div class="form-section">
+            <div class="section-header">
+              <mat-icon class="section-icon">title</mat-icon>
+              <h3 class="section-title">Información básica</h3>
+            </div>
+            
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label>Título del servicio</mat-label>
+              <input
+                required
+                autofocus
+                type="text"
+                name="titulo"
+                matInput
+                placeholder="Ingrese el nombre del servicio médico"
+                [(ngModel)]="servicio.titulo">
+              <mat-icon matSuffix>medical_services</mat-icon>
+              <mat-hint>Ej: Consulta General, Cardiología, Dermatología</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <!-- Campo Descripción -->
+          <div class="form-section">
+            <div class="section-header">
+              <mat-icon class="section-icon">description</mat-icon>
+              <h3 class="section-title">Descripción detallada</h3>
+            </div>
+            
+            <mat-form-field class="form-field textarea-field" appearance="outline">
+              <mat-label>Descripción del servicio</mat-label>
+              <textarea
+                name="descripcion"
+                matInput
+                placeholder="Describa en detalle el servicio que se ofrece, incluyendo procedimientos, beneficios y cualquier información relevante para los pacientes..."
+                rows="5"
+                [(ngModel)]="servicio.descripcion">
+              </textarea>
+              <mat-icon matSuffix>notes</mat-icon>
+              <mat-hint>Proporcione una descripción clara y completa del servicio</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <!-- Botones de acción -->
+          <div class="form-actions">
+            <button 
+              type="button" 
+              mat-stroked-button 
+              color="accent" 
+              class="cancel-button"
+              routerLink="/admin/servicios">
+              <mat-icon>cancel</mat-icon>
+              Cancelar
+            </button>
+            
+            <button 
+              type="submit" 
+              mat-raised-button 
+              color="primary" 
+              class="save-button"
+              [disabled]="!servicio.titulo.trim()">
+              <mat-icon>save</mat-icon>
+              {{ isEditMode ? 'Actualizar servicio' : 'Guardar servicio' }}
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

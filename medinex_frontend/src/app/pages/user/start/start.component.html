@@ -1,0 +1,199 @@
+<div class="quiz-container" *ngIf="!esEnviado">
+  <div class="quiz-wrapper">
+    <!-- Header -->
+    <div class="quiz-header">
+      <div class="user-info" *ngIf="preguntas">
+        <div class="user-avatar">
+          <mat-icon>person</mat-icon>
+        </div>
+        <div class="user-details">
+          <h1 class="user-name">{{ nombreCompleto }}</h1>
+          <p class="quiz-subtitle">En curso con el Doctor <span class="doctor-name">{{ obtenerNombreDoctor() }}</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-content">
+      <!-- Instructions Sidebar -->
+      <div class="instructions-sidebar">
+        <div class="instructions-card">
+          <div class="card-header">
+            <mat-icon class="header-icon">info</mat-icon>
+            <h3 class="card-title">Instrucciones</h3>
+          </div>
+          <div class="instructions-list">
+            <div class="instruction-item">
+              <mat-icon class="instruction-icon">refresh</mat-icon>
+              <span class="instruction-text">No actualice la página, de lo contrario obtendrá nuevas preguntas en este cuestionario</span>
+            </div>
+            <div class="instruction-item">
+              <mat-icon class="instruction-icon">tab</mat-icon>
+              <span class="instruction-text">No cambies las pestañas</span>
+            </div>
+            <div class="instruction-item">
+              <mat-icon class="instruction-icon">minimize</mat-icon>
+              <span class="instruction-text">No minimices la ventana</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Questions Section -->
+      <div class="questions-section">
+        <div class="questions-wrapper">
+          <div class="question-card" *ngFor="let p of preguntas; let i = index">
+            <div class="question-header">
+              <div class="question-number">
+                <span class="number">{{ i + 1 }}</span>
+              </div>
+              <div class="question-content">
+                <p class="question-text" [innerHTML]="p.contenido"></p>
+              </div>
+            </div>
+
+            <div class="options-container">
+              <div class="option-item" 
+                   [class.selected]="p.respuestaDada === p.opcion1"
+                   (click)="p.respuestaDada = p.opcion1">
+                <input [(ngModel)]="p.respuestaDada" type="radio" [value]="p.opcion1" name="{{ i }}" class="option-radio">
+                <div class="option-content">
+                  <span class="option-letter">A</span>
+                  <span class="option-text">{{ p.opcion1 }}</span>
+                </div>
+              </div>
+              
+              <div class="option-item" 
+                   [class.selected]="p.respuestaDada === p.opcion2"
+                   (click)="p.respuestaDada = p.opcion2">
+                <input [(ngModel)]="p.respuestaDada" type="radio" [value]="p.opcion2" name="{{ i }}" class="option-radio">
+                <div class="option-content">
+                  <span class="option-letter">B</span>
+                  <span class="option-text">{{ p.opcion2 }}</span>
+                </div>
+              </div>
+              
+              <div class="option-item" 
+                   [class.selected]="p.respuestaDada === p.opcion3"
+                   (click)="p.respuestaDada = p.opcion3">
+                <input [(ngModel)]="p.respuestaDada" type="radio" [value]="p.opcion3" name="{{ i }}" class="option-radio">
+                <div class="option-content">
+                  <span class="option-letter">C</span>
+                  <span class="option-text">{{ p.opcion3 }}</span>
+                </div>
+              </div>
+              
+              <div class="option-item" 
+                   [class.selected]="p.respuestaDada === p.opcion4"
+                   (click)="p.respuestaDada = p.opcion4">
+                <input [(ngModel)]="p.respuestaDada" type="radio" [value]="p.opcion4" name="{{ i }}" class="option-radio">
+                <div class="option-content">
+                  <span class="option-letter">D</span>
+                  <span class="option-text">{{ p.opcion4 }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="submit-section">
+            <button (click)="enviarCuestionario()" mat-raised-button color="primary" class="submit-button">
+              <mat-icon>send</mat-icon>
+              Enviar Cuestionario
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timer Sidebar -->
+      <div class="timer-sidebar">
+        <div class="timer-card">
+          <div class="timer-header">
+            <mat-icon class="timer-icon">schedule</mat-icon>
+            <h3 class="timer-title">Temporizador</h3>
+          </div>
+          <div class="timer-content">
+            <p class="timer-subtitle">El cuestionario se enviará automáticamente cuando el temporizador llegue 0:0</p>
+            <div class="timer-display">
+              <h2 class="timer-text">{{ obtenerHoraFormateada() }}</h2>
+            </div>
+            <div class="progress-container">
+              <mat-spinner 
+                mode="determinate" 
+                class="timer-spinner" 
+                [value]="(timer / (preguntas?.length * 2 * 60) * 100)">
+              </mat-spinner>
+              <div class="progress-text">
+                <span class="progress-percentage">{{ ((timer / (preguntas?.length * 2 * 60)) * 100).toFixed(0) }}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="results-container" *ngIf="esEnviado">
+  <div class="results-wrapper">
+    <div class="results-card">
+      <div class="results-header">
+        <div class="success-icon">
+          <mat-icon>check_circle</mat-icon>
+        </div>
+        <h2 class="results-title">¡Cuestionario Completado!</h2>
+        <p class="results-subtitle">Tu cuestionario ha sido enviado exitosamente. Puedes ver tus respuestas en cualquier momento.</p>
+      </div>
+      
+      <div class="results-content">
+        <div class="user-summary">
+          <div class="summary-item">
+            <mat-icon class="summary-icon">person</mat-icon>
+            <div class="summary-details">
+              <label class="summary-label">Paciente:</label>
+              <span class="summary-value">{{ nombreCompleto }}</span>
+            </div>
+          </div>
+          
+          <div class="summary-item">
+            <mat-icon class="summary-icon">medical_services</mat-icon>
+            <div class="summary-details">
+              <label class="summary-label">Doctor:</label>
+              <span class="summary-value">{{ obtenerNombreDoctor() }}</span>
+            </div>
+          </div>
+          
+          <div class="summary-item">
+            <mat-icon class="summary-icon">schedule</mat-icon>
+            <div class="summary-details">
+              <label class="summary-label">Fecha y hora:</label>
+              <span class="summary-value">{{ fechaYHoraActual }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="responses-section">
+          <h3 class="responses-title">
+            <mat-icon>quiz</mat-icon>
+            Resumen de Respuestas
+          </h3>
+          <div class="responses-list">
+            <div class="response-item" *ngFor="let respuesta of respuestas; let i = index">
+              <div class="response-number">{{ i + 1 }}</div>
+              <div class="response-text">{{ respuesta.respuestaDada }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="results-actions">
+        <button (click)="imprimirPagina()" mat-raised-button color="primary" class="action-button">
+          <mat-icon>print</mat-icon>
+          Imprimir Resultados
+        </button>
+        <button (click)="volverAlInicio()" mat-stroked-button class="action-button secondary">
+          <mat-icon>home</mat-icon>
+          Volver al Inicio
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

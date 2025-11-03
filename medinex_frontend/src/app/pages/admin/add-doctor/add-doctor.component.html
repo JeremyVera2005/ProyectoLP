@@ -1,0 +1,182 @@
+<div class="container">
+  <!-- Header Section -->
+  <div class="header">
+    <div class="header-content">
+      <div class="header-left">
+        <div class="icon-container">
+          <mat-icon class="header-icon">person_add</mat-icon>
+        </div>
+        <div class="header-text">
+          <h1 class="header-title">{{ isEmergencyMode ? 'Nuevo Doctor 24/7' : 'Nuevo Doctor' }}</h1>
+          <p class="header-subtitle">{{ isEmergencyMode ? 'Completa la información del doctor para el servicio de emergencias 24/7' : 'Completa la información del doctor para agregarlo al sistema' }}</p>
+        </div>
+      </div>
+      
+      <!-- Toggle para modo emergencia -->
+      <div class="mode-toggle" *ngIf="!isEmergencyMode">
+        <button 
+          type="button" 
+          mat-raised-button 
+          color="accent"
+          class="emergency-toggle-btn"
+          (click)="toggleEmergencyMode()">
+          <mat-icon>emergency</mat-icon>
+          Añadir Doctor 24/7
+        </button>
+      </div>
+      
+      <div class="mode-indicator" *ngIf="isEmergencyMode">
+        <div class="emergency-badge">
+          <mat-icon>emergency</mat-icon>
+          <span>Modo Emergencias 24/7</span>
+          <button 
+            type="button" 
+            mat-icon-button 
+            color="warn"
+            matTooltip="Cambiar a modo normal"
+            (click)="toggleEmergencyMode()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Section -->
+  <div class="form-container">
+    <form (ngSubmit)="guardarCuestionario()" class="doctor-form">
+      <!-- Información Básica -->
+      <div class="section">
+        <h3 class="section-title">
+          <mat-icon class="section-icon">badge</mat-icon>
+          Información Básica
+        </h3>
+        
+        <div class="form-grid">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Nombre del Doctor</mat-label>
+            <input 
+              [(ngModel)]="doctorData.titulo" 
+              type="text" 
+              name="titulo" 
+              required 
+              placeholder="Ej: Dr. Juan Pérez"
+              matInput>
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-hint>Nombre completo y título profesional</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Descripción Profesional</mat-label>
+            <textarea 
+              [(ngModel)]="doctorData.descripcion" 
+              type="text" 
+              name="descripcion"
+              placeholder="Especialidad, experiencia, educación..."
+              matInput 
+              rows="4">
+            </textarea>
+            <mat-icon matSuffix>description</mat-icon>
+            <mat-hint>Breve descripción de la especialidad y experiencia</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Información de Contacto -->
+      <div class="section">
+        <h3 class="section-title">
+          <mat-icon class="section-icon">contact_phone</mat-icon>
+          Información de Contacto
+        </h3>
+        
+        <div class="form-grid" [class.one-column]="isEmergencyMode" [class.two-columns]="!isEmergencyMode">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>DNI</mat-label>
+            <input 
+              [(ngModel)]="doctorData.puntosMaximos" 
+              type="text" 
+              name="puntosMaximos"
+              placeholder="12345678"
+              matInput>
+            <mat-icon matSuffix>fingerprint</mat-icon>
+            <mat-hint>Documento de identidad</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field 
+            class="full-width" 
+            appearance="outline"
+            *ngIf="!isEmergencyMode">
+            <mat-label>Número de Consultas</mat-label>
+            <input 
+              [(ngModel)]="doctorData.numeroDePreguntas" 
+              type="number" 
+              name="numeroDePreguntas"
+              placeholder="0"
+              matInput>
+            <mat-icon matSuffix>quiz</mat-icon>
+            <mat-hint>Límite de consultas por día</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Configuración -->
+      <div class="section">
+        <h3 class="section-title">
+          <mat-icon class="section-icon">settings</mat-icon>
+          Configuración
+        </h3>
+        
+        <div class="form-grid">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Especialidad</mat-label>
+            <mat-select name="servicio" [(ngModel)]="doctorData.servicio.servicioId" [disabled]="isEmergencyMode">
+              <mat-option value="">Seleccione una especialidad</mat-option>
+              <mat-option *ngFor="let c of servicios" [value]="c.servicioId">
+                {{ c.titulo }}
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>medical_services</mat-icon>
+            <mat-hint>{{ isEmergencyMode ? 'Servicio de Emergencias 24/7 (Automático)' : 'Área de especialización médica' }}</mat-hint>
+          </mat-form-field>
+
+          <div class="toggle-container">
+            <mat-slide-toggle 
+              name="activo" 
+              [(ngModel)]="doctorData.activo" 
+              color="primary"
+              class="status-toggle"
+              [disabled]="isEmergencyMode">
+              <span class="toggle-label">
+                <mat-icon>{{ doctorData.activo ? 'visibility' : 'visibility_off' }}</mat-icon>
+                Doctor {{ doctorData.activo ? 'Activo' : 'Inactivo' }}
+              </span>
+            </mat-slide-toggle>
+            <p class="toggle-hint">
+              {{ isEmergencyMode ? 'Los doctores de emergencias están siempre activos' : 
+                'El doctor ' + (doctorData.activo ? 'estará disponible' : 'no estará disponible') + ' para consultas' }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button 
+          type="button" 
+          mat-stroked-button 
+          class="btn-secondary"
+          routerLink="/admin/doctores">
+          <mat-icon>arrow_back</mat-icon>
+          Cancelar
+        </button>
+        <button 
+          type="submit" 
+          mat-raised-button 
+          class="btn-primary">
+          <mat-icon>save</mat-icon>
+          Guardar Doctor
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

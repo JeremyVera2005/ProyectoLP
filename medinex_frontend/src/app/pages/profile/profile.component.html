@@ -1,0 +1,77 @@
+<div class="profile-wrapper">
+  <div class="profile-container">
+    <!-- Header del perfil -->
+    <div class="profile-header">
+      <div class="profile-header-bg"></div>
+      <div class="profile-content">
+        <!-- Información del usuario -->
+        <div class="profile-info-section">
+          <div class="profile-info">
+            <h1 class="profile-name">{{ user.nombre }} {{ user.apellido }}</h1>
+            <p class="profile-role">{{ user.authorities[0].authority }}</p>
+            <div class="profile-status">
+              <mat-icon [class]="user.enabled ? 'status-active' : 'status-inactive'">
+                {{ user.enabled ? 'check_circle' : 'cancel' }}
+              </mat-icon>
+              <span class="status-text">{{ user.enabled ? "Activo" : "No activo"}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta de detalles -->
+    <mat-card class="profile-details-card">
+      <mat-card-header>
+        <mat-card-title class="details-title">
+          <mat-icon>person</mat-icon>
+          Detalles del perfil
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content class="profile-details">
+        <div class="details-grid">
+          <!-- Campo Nombre de usuario -->
+          <div class="detail-item">
+            <div class="detail-label">
+              <mat-icon>account_circle</mat-icon>
+              <span>Nombre de usuario</span>
+            </div>
+            <div class="detail-value">{{ user.username }}</div>
+          </div>
+
+          <!-- Campo ID -->
+          <div class="detail-item">
+            <div class="detail-label">
+              <mat-icon>fingerprint</mat-icon>
+              <span>ID</span>
+            </div>
+            <div class="detail-value">{{ user.id }}</div>
+          </div>
+
+          <!-- Campo Teléfono -->
+          <div class="detail-item">
+            <div class="detail-label">
+              <mat-icon>phone</mat-icon>
+              <span>Teléfono</span>
+            </div>
+            <div class="detail-value">{{ user.telefono }}</div>
+          </div>
+
+          <!-- Campo Rol -->
+          <div class="detail-item">
+            <div class="detail-label">
+              <mat-icon>badge</mat-icon>
+              <span>Rol</span>
+            </div>
+            <div class="detail-value role-badge">
+              <span [class]="'role-' + user.authorities[0].authority.toLowerCase()">
+                {{ user.authorities[0].authority }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
