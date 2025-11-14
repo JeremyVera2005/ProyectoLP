@@ -15,11 +15,10 @@ public class WebConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins(
-                                "https://leafy-fudge-2633b7.netlify.app",
-                                "https://*.netlify.app",
-                                "http://localhost:4200"
+                                "https://leafy-fudge-2633b7.netlify.app", // tu frontend Netlify
+                                "http://localhost:4200"                     // tu localhost
                         )
-                        .allowedMethods("GET","POST","PUT","DELETE","OPTIONS")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .exposedHeaders("Authorization")
                         .allowCredentials(true);
@@ -27,3 +26,4 @@ public class WebConfig {
         };
     }
 }
+
