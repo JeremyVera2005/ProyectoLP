@@ -15,18 +15,19 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // PERMITIR FRONTEND EN NETLIFY Y LOCALHOST
+        // PERMITIR TU FRONTEND (NETLIFY + LOCALHOST)
         configuration.setAllowedOrigins(Arrays.asList(
-            "http://localhost:4200",
-            "https://heroic-tanuki-06aa9e.netlify.app"
+                "http://localhost:4200",
+                "https://leafy-fudge-2633b7.netlify.app",     // ← TU FRONT REAL
+                "https://*.netlify.app"
         ));
 
         configuration.setAllowedMethods(Arrays.asList(
-            "GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"
+                "GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"
         ));
 
         configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setExposedHeaders(Arrays.asList("Authorization", "Content-Type"));
+        configuration.setExposedHeaders(Arrays.asList("Authorization"));
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
 
