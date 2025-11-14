@@ -2,6 +2,7 @@ package com.sistema.rep.configuraciones;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
@@ -16,10 +17,11 @@ public class CorsConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .cors().and()               // Habilita CORS
-            .csrf().disable()           // Desactiva CSRF para API REST
+            .cors().and()               // 🔹 Habilita CORS
+            .csrf().disable()           // 🔹 Desactiva CSRF para API REST
             .authorizeHttpRequests()
-            .anyRequest().permitAll();  // Ajusta según tu seguridad real
+            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // 🔹 Permitir preflight
+            .anyRequest().permitAll();  // 🔹 Ajusta según tu seguridad real
 
         return http.build();
     }
@@ -28,17 +30,19 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // 🔹 Orígenes permitidos (puedes agregar más si es necesario)
+        // 🔹 Orígenes permitidos (usa patterns para subdominios Netlify)
         configuration.setAllowedOriginPatterns(List.of(
-            "http://localhost:4200", // Angular local
-            "https://*.netlify.app"  // Todos los deploys de Netlify
+            "http://localhost:4200",
+            "https://*.netlify.app"
         ));
 
         // 🔹 Métodos HTTP permitidos
-        configuration.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS","PATCH","HEAD"));
+        configuration.setAllowedMethods(List.of(
+            "GET","POST","PUT","DELETE","OPTIONS","PATCH","HEAD"
+        ));
 
         // 🔹 Headers permitidos
-        configuration.setAllowedHeaders(List.of("*")); // Permite todos los headers
+        configuration.setAllowedHeaders(List.of("*")); // 🔹 Permite todos los headers
 
         // 🔹 Headers expuestos al cliente
         configuration.setExposedHeaders(List.of("Authorization","Content-Type"));
@@ -46,7 +50,7 @@ public class CorsConfig {
         // 🔹 Permitir cookies y credenciales
         configuration.setAllowCredentials(true);
 
-        // 🔹 Tiempo de cache del preflight
+        // 🔹 Tiempo de cache de preflight
         configuration.setMaxAge(3600L);
 
         // 🔹 Registrar configuración para todas las rutas
@@ -56,3 +60,4 @@ public class CorsConfig {
         return source;
     }
 }
+
