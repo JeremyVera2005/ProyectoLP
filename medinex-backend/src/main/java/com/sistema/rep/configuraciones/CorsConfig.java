@@ -14,31 +14,25 @@ public class CorsConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        
-        // Permitir el origen específico de Angular
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-        
-        // Métodos HTTP permitidos
+
+        // PERMITIR FRONTEND EN NETLIFY Y LOCALHOST
+        configuration.setAllowedOrigins(Arrays.asList(
+            "http://localhost:4200",
+            "https://heroic-tanuki-06aa9e.netlify.app"
+        ));
+
         configuration.setAllowedMethods(Arrays.asList(
             "GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"
         ));
-        
-        // Headers permitidos
+
         configuration.setAllowedHeaders(Arrays.asList("*"));
-        
-        // Headers expuestos al cliente
-        configuration.setExposedHeaders(Arrays.asList(
-            "Authorization", "Content-Type"
-        ));
-        
-        // Permitir credenciales
+        configuration.setExposedHeaders(Arrays.asList("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
-        
-        // Tiempo de cache para preflight requests
         configuration.setMaxAge(3600L);
-        
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
+
         return source;
     }
 }
