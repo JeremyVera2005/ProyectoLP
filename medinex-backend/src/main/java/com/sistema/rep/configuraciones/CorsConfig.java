@@ -2,7 +2,6 @@ package com.sistema.rep.configuraciones;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
@@ -19,9 +18,9 @@ public class CorsConfig {
         http
             .cors().and()               // 🔹 Habilita CORS
             .csrf().disable()           // 🔹 Desactiva CSRF para API REST
-            .authorizeHttpRequests()
-            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // 🔹 Permitir preflight
-            .anyRequest().permitAll();  // 🔹 Ajusta según tu seguridad real
+            .authorizeHttpRequests(auth -> auth
+                .anyRequest().permitAll() // 🔹 Permite todas las rutas y preflights
+            );
 
         return http.build();
     }
@@ -30,7 +29,7 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // 🔹 Orígenes permitidos (usa patterns para subdominios Netlify)
+        // 🔹 Orígenes permitidos (localhost y Netlify)
         configuration.setAllowedOriginPatterns(List.of(
             "http://localhost:4200",
             "https://*.netlify.app"
@@ -42,7 +41,7 @@ public class CorsConfig {
         ));
 
         // 🔹 Headers permitidos
-        configuration.setAllowedHeaders(List.of("*")); // 🔹 Permite todos los headers
+        configuration.setAllowedHeaders(List.of("*")); // Permite todos los headers
 
         // 🔹 Headers expuestos al cliente
         configuration.setExposedHeaders(List.of("Authorization","Content-Type"));
@@ -60,4 +59,3 @@ public class CorsConfig {
         return source;
     }
 }
-
