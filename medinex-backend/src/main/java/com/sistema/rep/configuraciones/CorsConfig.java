@@ -16,10 +16,10 @@ public class CorsConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .cors().and()               // 🔹 Habilita CORS
-            .csrf().disable()           // 🔹 Desactiva CSRF para API REST
+            .cors().and()               // Habilita CORS
+            .csrf().disable()           // Desactiva CSRF para API REST
             .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll() // 🔹 Permite todas las rutas y preflights
+                .anyRequest().permitAll() // Permite todas las rutas
             );
 
         return http.build();
@@ -29,7 +29,7 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // 🔹 Orígenes permitidos (localhost y Netlify)
+        // 🔹 Permitir cualquier subdominio de Netlify y localhost
         configuration.setAllowedOriginPatterns(List.of(
             "http://localhost:4200",
             "https://*.netlify.app"
@@ -41,7 +41,7 @@ public class CorsConfig {
         ));
 
         // 🔹 Headers permitidos
-        configuration.setAllowedHeaders(List.of("*")); // Permite todos los headers
+        configuration.setAllowedHeaders(List.of("*"));
 
         // 🔹 Headers expuestos al cliente
         configuration.setExposedHeaders(List.of("Authorization","Content-Type"));
