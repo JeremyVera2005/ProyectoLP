@@ -14,35 +14,31 @@ public class CorsConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-
-        // 🔹 Permitir localhost (para desarrollo) y cualquier subdominio de Netlify (producción)
-        configuration.setAllowedOriginPatterns(Arrays.asList(
-            "http://localhost:4200",
-            "https://*.netlify.app"
-        ));
-
-        // 🔹 Métodos HTTP permitidos
+        
+        // Permitir el origen específico de Angular
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        
+        // Métodos HTTP permitidos
         configuration.setAllowedMethods(Arrays.asList(
             "GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"
         ));
-
-        // 🔹 Headers permitidos
+        
+        // Headers permitidos
         configuration.setAllowedHeaders(Arrays.asList("*"));
-
-        // 🔹 Headers expuestos al cliente (por ejemplo, para JWT)
-        configuration.setExposedHeaders(Arrays.asList("Authorization", "Content-Type"));
-
-        // 🔹 Permitir cookies y credenciales
+        
+        // Headers expuestos al cliente
+        configuration.setExposedHeaders(Arrays.asList(
+            "Authorization", "Content-Type"
+        ));
+        
+        // Permitir credenciales
         configuration.setAllowCredentials(true);
-
-        // 🔹 Cache de preflight (en segundos)
+        
+        // Tiempo de cache para preflight requests
         configuration.setMaxAge(3600L);
-
-        // 🔹 Registrar configuración para todas las rutas
+        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
-
         return source;
     }
 }
-
