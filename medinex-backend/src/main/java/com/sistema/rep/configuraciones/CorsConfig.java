@@ -1,61 +1,44 @@
 package com.sistema.rep.configuraciones;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.cors.CorsConfigurationSource;
-
-import java.util.List;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 public class CorsConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            .cors().and()               // Habilita CORS
-            .csrf().disable()           // Desactiva CSRF para API REST
-            .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll() // Permite todas las rutas
-            );
-
-        return http.build();
-    }
-
-    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-
-        // 🔹 Permitir cualquier subdominio de Netlify y localhost
-        configuration.setAllowedOriginPatterns(List.of(
-            "http://localhost:4200",
-            "https://*.netlify.app"
+        
+        // Permitir el origen específico de Angular
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        
+        // Métodos HTTP permitidos
+        configuration.setAllowedMethods(Arrays.asList(
+            "GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"
         ));
-
-        // 🔹 Métodos HTTP permitidos
-        configuration.setAllowedMethods(List.of(
-            "GET","POST","PUT","DELETE","OPTIONS","PATCH","HEAD"
+        
+        // Headers permitidos
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        
+        // Headers expuestos al cliente
+        configuration.setExposedHeaders(Arrays.asList(
+            "Authorization", "Content-Type"
         ));
-
-        // 🔹 Headers permitidos
-        configuration.setAllowedHeaders(List.of("*"));
-
-        // 🔹 Headers expuestos al cliente
-        configuration.setExposedHeaders(List.of("Authorization","Content-Type"));
-
-        // 🔹 Permitir cookies y credenciales
+        
+        // Permitir credenciales
         configuration.setAllowCredentials(true);
-
-        // 🔹 Tiempo de cache de preflight
+        
+        // Tiempo de cache para preflight requests
         configuration.setMaxAge(3600L);
-
-        // 🔹 Registrar configuración para todas las rutas
+        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
-
         return source;
     }
 }
