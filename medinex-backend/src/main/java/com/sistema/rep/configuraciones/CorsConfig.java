@@ -19,7 +19,7 @@ public class CorsConfig {
             .cors().and()               // Habilita CORS
             .csrf().disable()           // Desactiva CSRF para API REST
             .authorizeHttpRequests()
-            .anyRequest().permitAll();  // Ajusta según seguridad real
+            .anyRequest().permitAll();  // Ajusta según tu seguridad real
 
         return http.build();
     }
@@ -28,17 +28,17 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // 🔹 Orígenes permitidos (solo frontend real)
-        configuration.setAllowedOrigins(List.of(
+        // 🔹 Orígenes permitidos (puedes agregar más si es necesario)
+        configuration.setAllowedOriginPatterns(List.of(
             "http://localhost:4200", // Angular local
-            "https://691773c69afbf6ed32be92cc--leafy-fudge-2633b7.netlify.app" // Netlify
+            "https://*.netlify.app"  // Todos los deploys de Netlify
         ));
 
         // 🔹 Métodos HTTP permitidos
         configuration.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS","PATCH","HEAD"));
 
         // 🔹 Headers permitidos
-        configuration.setAllowedHeaders(List.of("Authorization","Content-Type","Accept","X-Requested-With"));
+        configuration.setAllowedHeaders(List.of("*")); // Permite todos los headers
 
         // 🔹 Headers expuestos al cliente
         configuration.setExposedHeaders(List.of("Authorization","Content-Type"));
@@ -46,7 +46,7 @@ public class CorsConfig {
         // 🔹 Permitir cookies y credenciales
         configuration.setAllowCredentials(true);
 
-        // 🔹 Tiempo de cache de preflight
+        // 🔹 Tiempo de cache del preflight
         configuration.setMaxAge(3600L);
 
         // 🔹 Registrar configuración para todas las rutas
@@ -56,4 +56,3 @@ public class CorsConfig {
         return source;
     }
 }
-
