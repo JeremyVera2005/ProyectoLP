@@ -13,6 +13,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 @Configuration
 public class CorsConfig {
 
+    // 🔹 Spring Security + CORS
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -20,18 +21,19 @@ public class CorsConfig {
             .and()
             .csrf().disable() // desactivar CSRF para API
             .authorizeHttpRequests()
-            .anyRequest().permitAll(); // permitir todas las rutas (ajusta según seguridad real)
+            .anyRequest().permitAll(); // permitir todas las rutas
         return http.build();
     }
 
+    // 🔹 Configuración de CORS
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // 🔹 Orígenes permitidos
         configuration.setAllowedOrigins(Arrays.asList(
-            "http://localhost:4200",
-            "https://leafy-fudge-2633b7.netlify.app"
+            "http://localhost:4200", // Angular local
+            "https://691773c69afbf6ed32be92cc--leafy-fudge-2633b7.netlify.app" // Netlify permalink
         ));
 
         // 🔹 Métodos HTTP permitidos
@@ -58,4 +60,3 @@ public class CorsConfig {
         return source;
     }
 }
-
