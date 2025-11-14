@@ -15,8 +15,11 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         
-        // Permitir el origen específico de Angular
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        // Orígenes permitidos: localhost y tu permalink de Netlify
+        configuration.setAllowedOrigins(Arrays.asList(
+            "http://localhost:4200",
+            "https://6917bdb683be0a9c40c129e7--fascinating-shortbread-8a81e9.netlify.app"
+        ));
         
         // Métodos HTTP permitidos
         configuration.setAllowedMethods(Arrays.asList(
@@ -31,7 +34,7 @@ public class CorsConfig {
             "Authorization", "Content-Type"
         ));
         
-        // Permitir credenciales
+        // Permitir credenciales (cookies, tokens)
         configuration.setAllowCredentials(true);
         
         // Tiempo de cache para preflight requests
