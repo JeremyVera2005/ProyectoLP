@@ -18,7 +18,7 @@ public class CorsConfig {
         // Orígenes permitidos: localhost y tu permalink de Netlify
         configuration.setAllowedOrigins(Arrays.asList(
             "http://localhost:4200",
-            "https://magical-piroshki-1340cb.netlify.app/"
+            "https://magical-piroshki-1340cb.netlify.app"
         ));
         
         // Métodos HTTP permitidos
